@@ -9,6 +9,12 @@ namespace EdVision.WebApi.Model
 {
     public class EducationDirection
     {
+        public EducationDirection() {
+            Projects = new HashSet<Project>();
+            Students = new HashSet<Student>();
+            Departments = new HashSet<Department>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -16,11 +22,9 @@ namespace EdVision.WebApi.Model
         public string Name { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
-        //public ICollection<DepartmentToEducationDirectionMapping> Mappings { get; set; }
-        public ICollection<Project> Projects { get; set; }
-        public ICollection<Student> Students { get; set; }
 
-        //[NotMapped]
-        public ICollection<Department> Departments { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Department> Departments { get; set; }
     }
 }

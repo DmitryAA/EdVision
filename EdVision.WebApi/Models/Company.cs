@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 namespace EdVision.WebApi.Model
 {
     public class Company {
+        public Company() {
+            Mentors = new HashSet<Mentor>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -22,7 +26,6 @@ namespace EdVision.WebApi.Model
         public string INN { get; set; }
         public string ORGN { get; set; }
 
-        public int CompanyId { get; set; }
-        public ICollection<Mentor> Mentors { get; set; }
+        public virtual ICollection<Mentor> Mentors { get; set; }
     }
 }

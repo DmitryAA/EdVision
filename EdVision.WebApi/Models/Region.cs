@@ -15,6 +15,5 @@ namespace EdVision.WebApi.Model
 
         public string Name { get; set; }
 
-        public ICollection<City> Cities { get; set; }
     }
 }

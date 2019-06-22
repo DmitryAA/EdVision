@@ -13,8 +13,8 @@ namespace EdVision.WebApi.Model
         public int Id { get; set; }
         public Student Performer { get; set; }
 
-        public Project EstimatedProject { get; set; }
-        public Grade LecturerGrade { get; set; }
-        public Grade MentorGrade { get; set; }
+        public virtual Project EstimatedProject { get; set; }
+        public virtual Grade LecturerGrade { get; set; }
+        public virtual Grade MentorGrade { get; set; }
 }
 }

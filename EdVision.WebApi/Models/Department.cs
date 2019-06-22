@@ -15,7 +15,7 @@ namespace EdVision.WebApi.Model
         public string Name { get; set; }
        // public ICollection<DepartmentToEducationDirectionMapping> Mappings { get; set; }
 
-        public University University { get; set; }
+
         public ICollection<Project> Projects { get; set; }
         public ICollection<Student> Students { get; set; } 
         public ICollection<JobStatitics> Statitics { get; set; }

@@ -10,10 +10,5 @@ namespace EdVision.WebApi.Model
         public int Value { get; set; }
         public string Comment { get; set; }
         public Person GradingPerson { get; set; }
-
-        public Task TaskEstimatedByLecturer { get; set; }
-        public Task TaskEstimatedByMentor { get; set; }
-        public CourseResult ProjectResultEstimatedByLectuer { get; set; }
-        public CourseResult ProjectResultEstimatedByMentor { get; set; }
     }
 }

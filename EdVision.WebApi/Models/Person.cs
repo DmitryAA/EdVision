@@ -12,15 +12,11 @@ namespace EdVision.WebApi.Model
         public string PatronimicName { get; set; }
         public Address Address { get; set; }
         public DateTime Birthday { get; set; }
-
-        public ICollection<Grade> MadeGrades { get; set; }
     }
 
     public class Mentor : Person {
         public Company Company { get; set; }
-        public string Position { get; set; }
-
-        public int CompanyId { get; set; }
+        public string JobTitle { get; set; }
     }
 
     public class Student : Person {
@@ -33,6 +29,6 @@ namespace EdVision.WebApi.Model
 
     public class Lecturer: Person {
         public string AcademicDegree { get; set; }
-        public string Position { get; set; }
+        public string AcademicTitle { get; set; }
     }
 }

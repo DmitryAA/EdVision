@@ -18,8 +18,6 @@ namespace EdVision.WebApi.Model
         public double MeanExpenses { get; set; }
         public double HappinessIndex { get; set; }
 
-        public int RegionId { get; set; }
         public virtual Region Region { get; set; }
-        public virtual ICollection<Address> Addresses { get; set; }
     }
 }
