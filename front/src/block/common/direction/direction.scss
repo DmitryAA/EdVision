@@ -1,0 +1,13 @@
+@import "~style";
+
+$block-name: 'b-direction';
+
+.#{$block-name} {
+	&__info {
+		@include xy-cell(7);
+	}
+
+	&__students {
+		@include xy-cell(5);
+	}
+}

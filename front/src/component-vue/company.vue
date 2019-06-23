@@ -1,7 +1,10 @@
 <template>
 	<div>
 		<div v-if="info">
-			<div><strong>Имя</strong>: {{info.Name}}</div>
+			<h1>{{info.Name}}</h1>
+			<div><strong>Рейтинг</strong>: {{info.Rating}}</div>
+			<div><strong>Регион</strong>: {{info.Address.City.Region.Name}} (Средняя зарплата: {{info.Address.City.MeanIncome}} / средние расходы: {{info.Address.City.MeanExpenses }})</div>
+			<p>{{info.Description}}</p>
 		</div>
 	</div>
 </template>

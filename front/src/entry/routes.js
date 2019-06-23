@@ -7,6 +7,9 @@ import companies from 'component-vue/companies';
 import company from 'component-vue/company';
 import projects from 'component-vue/projects';
 import project from 'component-vue/project';
+import direction from 'component-vue/direction';
+import student from 'component-vue/student';
+import portfolio from 'component-vue/portfolio';
 
 module.exports = [
 	{ path: '/', component: main },
@@ -18,4 +21,7 @@ module.exports = [
 	{ path: '/company/:id', component: company },
 	{ path: '/projects/', component: projects },
 	{ path: '/project/:id', component: project },
+	{ path: '/direction/:id', component: direction },
+	{ path: '/student/:id', component: student },
+	{ path: '/student/:id/portfolio', component: portfolio },
 ];

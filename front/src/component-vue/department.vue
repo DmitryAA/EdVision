@@ -1,7 +1,15 @@
 <template>
-	<div>
-		<div v-if="info">
-			<div><strong>Имя</strong>: {{info.Name}}</div>
+	<div class="row b-department">
+		<div v-if="info" class="b-department__info">
+			<h1>{{info.Name}}</h1>
+		</div>
+		<div v-if="info" class="b-department__directions">
+			<h2>Специальности</h2>
+			<section v-for="item in info.Directions">
+				<article>
+					<router-link :to="{ path: '/direction/' + item.Id}">{{item.Name}}</router-link>
+				</article>
+			</section>
 		</div>
 	</div>
 </template>
