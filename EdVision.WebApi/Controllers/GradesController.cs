@@ -12,17 +12,22 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/grades")]
     public class GradesController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
         // GET: api/Grades
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Grade> GetGrades()
         {
             return db.Grades.ToList();
         }
 
         // GET: api/Grades/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Grade))]
         public IHttpActionResult GetGrade(int id)
         {
@@ -35,71 +40,71 @@ namespace EdVision.WebApi.Controllers
             return Ok(grade);
         }
 
-        // PUT: api/Grades/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutGrade(int id, Grade grade)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Grades/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutGrade(int id, Grade grade)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != grade.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != grade.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(grade).State = EntityState.Modified;
+        //    db.Entry(grade).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GradeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!GradeExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Grades
-        [ResponseType(typeof(Grade))]
-        public IHttpActionResult PostGrade(Grade grade)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Grades
+        //[ResponseType(typeof(Grade))]
+        //public IHttpActionResult PostGrade(Grade grade)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Grades.Add(grade);
-            db.SaveChanges();
+        //    db.Grades.Add(grade);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = grade.Id }, grade);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = grade.Id }, grade);
+        //}
 
-        // DELETE: api/Grades/5
-        [ResponseType(typeof(Grade))]
-        public IHttpActionResult DeleteGrade(int id)
-        {
-            Grade grade = db.Grades.Find(id);
-            if (grade == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Grades/5
+        //[ResponseType(typeof(Grade))]
+        //public IHttpActionResult DeleteGrade(int id)
+        //{
+        //    Grade grade = db.Grades.Find(id);
+        //    if (grade == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Grades.Remove(grade);
-            db.SaveChanges();
+        //    db.Grades.Remove(grade);
+        //    db.SaveChanges();
 
-            return Ok(grade);
-        }
+        //    return Ok(grade);
+        //}
 
         protected override void Dispose(bool disposing)
         {

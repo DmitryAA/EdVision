@@ -12,17 +12,20 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/mentors")]
     public class MentorsController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
-        // GET: api/Mentors
-        public IEnumerable<Mentor> GetPeople()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Mentor> GetMentors()
         {
             return db.Mentors.ToList();
         }
 
-        // GET: api/Mentors/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Mentor))]
         public IHttpActionResult GetMentor(int id)
         {
@@ -35,7 +38,8 @@ namespace EdVision.WebApi.Controllers
             return Ok(mentor);
         }
 
-        // GET: api/Students
+        [HttpGet]
+        [Route("byuniversity/{universityID:int}")]
         public IEnumerable<Mentor> GetLecturerByUniversity(int universityID)
         {
             var university = db.Universities.Find(universityID);
@@ -44,15 +48,17 @@ namespace EdVision.WebApi.Controllers
             return tasks.Select(x => x.MentorGrade.GradingPerson).Cast<Mentor>().ToList();
         }
 
-        // GET: api/Students
+        [HttpGet]
+        [Route("bycompany/{companyID:int}")]
         public IEnumerable<Mentor> GetMentorsByCompany(int companyID)
         {
             var mentor = db.Companies.Find(companyID).Mentors.ToList();
             return mentor;
         }
 
-        // GET: api/Students
-        public IEnumerable<Mentor> GetMentorByProjectID(int projectID)
+        [HttpGet]
+        [Route("byproject/{projectID:int}")]
+        public IEnumerable<Mentor> GetMentorByProject(int projectID)
         {
             var project = db.Projects.Find(projectID);
             return project.Tasks.Select(x=>x.MentorGrade.GradingPerson).Cast<Mentor>();
@@ -63,86 +69,86 @@ namespace EdVision.WebApi.Controllers
 
 
 
-        // PUT: api/Mentors/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutMentor(int id, Mentor mentor)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Mentors/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutMentor(int id, Mentor mentor)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != mentor.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != mentor.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(mentor).State = EntityState.Modified;
+        //    db.Entry(mentor).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MentorExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!MentorExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Mentors
-        [ResponseType(typeof(Mentor))]
-        public IHttpActionResult PostMentor(Mentor mentor)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Mentors
+        //[ResponseType(typeof(Mentor))]
+        //public IHttpActionResult PostMentor(Mentor mentor)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Mentors.Add(mentor);
+        //    db.Mentors.Add(mentor);
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (MentorExists(mentor.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (MentorExists(mentor.Id))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return CreatedAtRoute("DefaultApi", new { id = mentor.Id }, mentor);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = mentor.Id }, mentor);
+        //}
 
-        // DELETE: api/Mentors/5
-        [ResponseType(typeof(Mentor))]
-        public IHttpActionResult DeleteMentor(int id)
-        {
-            Mentor mentor = db.Mentors.Find(id);
-            if (mentor == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Mentors/5
+        //[ResponseType(typeof(Mentor))]
+        //public IHttpActionResult DeleteMentor(int id)
+        //{
+        //    Mentor mentor = db.Mentors.Find(id);
+        //    if (mentor == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Mentors.Remove(mentor);
-            db.SaveChanges();
+        //    db.Mentors.Remove(mentor);
+        //    db.SaveChanges();
 
-            return Ok(mentor);
-        }
+        //    return Ok(mentor);
+        //}
 
         protected override void Dispose(bool disposing)
         {

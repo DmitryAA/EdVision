@@ -1,0 +1,131 @@
+﻿{% extends "phonebook/wrapper.html" %}
+{% block content %}
+
+<style>
+    i {
+        color: #aaaaaa;
+        margin: 0 5;
+    }
+    .d-tr-podrazd i {
+        color: #ffffff
+    }
+    .d-td4 i, .d-tr-podrazd i, .d-tr-otdel i {
+        font-size: 22px;
+    }
+
+    .fa-pencil:hover {
+        color: #0a79df;
+    }
+
+    .fa-trash:hover {
+        color: #dc2a2a;
+    }
+    .fa-plus:hover {
+        color: #009933;
+    }
+    .fa-user-plus:hover {
+        color: #009933;
+    }
+</style>
+{% load mptt_tags %}
+<div class="d-table">
+    {% recursetree phonebook %}
+    {% if node.is_root_node %}
+        <div class="obertka">
+        <div class="d-tr-podrazd">
+            {{ node.name }}
+            <a href="/podrazdelenie/{{ node.id }}/add_otdel">
+                <i class="fa fa-plus" aria-hidden="true" title="Добавить отдел"></i>
+            </a>
+            <a href="/podrazdelenie/{{ node.id }}/add_sotrudnik">
+                <i class="fa fa-user-plus" aria-hidden="true" title="Добавить сотрудника"></i>
+            </a>
+            <a href="#">
+                <i class="fa fa-pencil" aria-hidden="true" title="Редактировать"></i>
+            </a>
+        </div>
+        {% elif node.level == 1 %}
+            <div class="d-tr-otdel">
+            {% if node.ispeople == False %}
+                {{ node.name }}
+                <span class="sotrudnik-or-otdel">
+                    <a href="/podrazdelenie/{{ node.parent.id }}/otdel/{{ node.id }}/add_sotrudnik">
+                        <i class="fa fa-user-plus" aria-hidden="true" title="Добавить сотрудника"></i>
+                    </a>
+                    <a href="/podrazdelenie/{{ node.parent.id }}/edit_otdel/{{ node.id }}">
+                        <i class="fa fa-pencil" aria-hidden="true" title="Редактировать"></i>
+                    </a>
+                    <a href="/podrazdelenie/{{ node.parent.id }}/delete/{{ node.id }}" onclick="document.getElementById('delete{{ node.id }}').style.display='inline'; return false;">
+                        <i class="fa fa-trash" aria-hidden="true" title="Удалить"></i>
+                    </a>
+                    <span id="delete{{ node.id }}" style="display:none;font-size:12px;">
+                        <a href="/podrazdelenie/{{ node.parent.id }}/delete/{{ node.id }}">удалить</a> /
+                        <a href="#" onclick="document.getElementById('delete{{ node.id }}').style.display='none'; return false;">отмена</a>
+                    </span>
+
+                </span>
+            {% else %}
+                <div class="d-tr-sotrudnik">
+                <div class="d-td1">
+                    {{ node.name }}
+                </div>
+                <div class="d-td2">
+                    {{ node.doljnost }}
+                </div>
+                <div class="d-td3">
+                    {{ node.phone }}
+                </div>
+                <div class="d-td4">
+                    {{ node.adres }}
+                </div>
+                <div class="d-td4">
+                    <a href="/podrazdelenie/{{ node.parent.id }}/edit_sotrudnik/{{ node.id }}">
+                        <i class="fa fa-pencil" aria-hidden="true" title="Редактировать"></i>
+                    </a>
+                    <a href="/podrazdelenie/{{ node.parent.id }}/delete/{{ node.id }}" onclick="document.getElementById('delete{{ node.id }}').style.display='inline'; return false;">
+                        <i class="fa fa-trash" aria-hidden="true" title="Удалить"></i>
+                    </a>
+                    <span id="delete{{ node.id }}" style="display:none;font-size:12px;">
+                        <a href="/podrazdelenie/{{ node.parent.id }}/delete/{{ node.id }}">удалить</a> /
+                        <a href="#"onclick="document.getElementById('delete{{ node.id }}').style.display='none'; return false;">отмена</a>
+                    </span>
+                </div>
+            {% endif %}
+            </div>
+            {% else %}
+                <div class="d-tr-sotrudnik">
+                    <div class="d-td1">
+                        {{ node.name }}
+                    </div>
+                    <div class="d-td2">
+                        {{ node.doljnost }}
+                    </div>
+                    <div class="d-td3">
+                        {{ node.phone }}
+                    </div>
+                    <div class="d-td4">
+                        {{ node.adres }}
+                        <a href="/podrazdelenie/{{ node.parent.id }}/edit_sotrudnik/{{ node.id }}">
+                            <i class="fa fa-pencil" aria-hidden="true" title="Редактировать"></i>
+                        </a>
+                        <a href="/podrazdelenie/{{ node.parent.id }}/delete/{{ node.id }}" onclick="document.getElementById('delete{{ node.id }}').style.display='inline'; return false;">
+                            <i class="fa fa-trash" aria-hidden="true" title="Удалить"></i>
+                        </a>
+                        <span id="delete{{ node.id }}" style="display:none;font-size:12px;">
+                            <a href="/podrazdelenie/{{ node.parent.id }}/delete/{{ node.id }}">удалить</a> /
+                            <a href="#"
+                           onclick="document.getElementById('delete{{ node.id }}').style.display='none'; return false;">отмена</a>
+                        </span>
+                    </div>
+                </div>
+            {% endif %}
+            {% if not node.is_leaf_node %}
+                {{ children }}
+            {% if not node.get_next_sibling %}
+        </div>
+        {% endif %}
+        {% endif %}
+
+        {% endrecursetree %}
+    </div>
+    {% endblock %}

@@ -1,0 +1,41 @@
+﻿{% extends "phonebook/wrapper.html" %}
+{% block content %} 
+<form method="POST" action="/podrazdelenie/{{ podrazd_id }}/otdel/{{ id_otdel }}/add_sotrudnik">
+    {% csrf_token %}
+    <p>
+        <label>ФИО:</label><br>
+        <input type="text" name="name" />
+    </p>
+    <p>
+        <label>Должность:</label><br>
+        <input type="text" name="doljnost" />
+    </p>
+    <p>
+        <label>Номер телефона:</label><br>
+        <input type="text" name="phone" />
+    </p>
+    <p>
+        <label>Номер кабинета:</label><br>
+        <input type="text" name="adres" />
+    </p>
+    <p>
+        <label>Подразделение:</label><br>
+        <select name="SelectPodrazdelenie">
+            {% load mptt_tags %}
+            {% recursetree phonebook %}
+            <!--{% if node.ispeople == False %}-->
+            <option value="{{ node.id }}">{{ node.name }}</option>
+
+            <!--{% endif %}-->
+            {% if not node.is_leaf_node %}
+
+            {{ children }}
+
+            {% endif %}
+            {% endrecursetree %}
+
+        </select>
+    </p>
+    <input type="submit" value="Сохранить">
+</form>
+{% endblock %}

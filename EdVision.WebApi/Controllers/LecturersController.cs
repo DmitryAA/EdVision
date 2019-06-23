@@ -12,17 +12,22 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/lecturers")]
     public class LecturersController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
         // GET: api/Lecturers
-        public IEnumerable<Lecturer> GetPeople()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Lecturer> GetLecturers()
         {
             return db.Lecturer.ToList();
         }
 
         // GET: api/Lecturers/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Lecturer))]
         public IHttpActionResult GetLecturer(int id)
         {
@@ -35,7 +40,8 @@ namespace EdVision.WebApi.Controllers
             return Ok(lecturer);
         }
 
-        // GET: api/Students
+        [HttpGet]
+        [Route("byuniversity/{universityIid:int}")]
         public IEnumerable<Lecturer> GetLecturerByUniversity(int universityID)
         {
             var university = db.Universities.Find(universityID);
@@ -44,7 +50,8 @@ namespace EdVision.WebApi.Controllers
             return tasks.Select(x => x.LecturerGrade.GradingPerson).Cast<Lecturer>().ToList();
         }
 
-        // GET: api/Students
+        [HttpGet]
+        [Route("bydepartment/{departmentID:int}")]
         public IEnumerable<Lecturer> GetLecturerByDepartments(int departmentID)
         {
             var dep = db.Lecturer.Find(departmentID);
@@ -52,7 +59,8 @@ namespace EdVision.WebApi.Controllers
         }
 
 
-        // GET: api/Students
+        [HttpGet]
+        [Route("byproject/{projectID:int}")]
         public IEnumerable<Lecturer> GetLecturerByProject(int projectID)
         {
             var project = db.Projects.Find(projectID);
@@ -60,86 +68,86 @@ namespace EdVision.WebApi.Controllers
         }
 
 
-        // PUT: api/Lecturers/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutLecturer(int id, Lecturer lecturer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Lecturers/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutLecturer(int id, Lecturer lecturer)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != lecturer.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != lecturer.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(lecturer).State = EntityState.Modified;
+        //    db.Entry(lecturer).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LecturerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!LecturerExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Lecturers
-        [ResponseType(typeof(Lecturer))]
-        public IHttpActionResult PostLecturer(Lecturer lecturer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Lecturers
+        //[ResponseType(typeof(Lecturer))]
+        //public IHttpActionResult PostLecturer(Lecturer lecturer)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Lecturer.Add(lecturer);
+        //    db.Lecturer.Add(lecturer);
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (LecturerExists(lecturer.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (LecturerExists(lecturer.Id))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return CreatedAtRoute("DefaultApi", new { id = lecturer.Id }, lecturer);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = lecturer.Id }, lecturer);
+        //}
 
-        // DELETE: api/Lecturers/5
-        [ResponseType(typeof(Lecturer))]
-        public IHttpActionResult DeleteLecturer(int id)
-        {
-            Lecturer lecturer = db.Lecturer.Find(id);
-            if (lecturer == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Lecturers/5
+        //[ResponseType(typeof(Lecturer))]
+        //public IHttpActionResult DeleteLecturer(int id)
+        //{
+        //    Lecturer lecturer = db.Lecturer.Find(id);
+        //    if (lecturer == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Lecturer.Remove(lecturer);
-            db.SaveChanges();
+        //    db.Lecturer.Remove(lecturer);
+        //    db.SaveChanges();
 
-            return Ok(lecturer);
-        }
+        //    return Ok(lecturer);
+        //}
 
         protected override void Dispose(bool disposing)
         {

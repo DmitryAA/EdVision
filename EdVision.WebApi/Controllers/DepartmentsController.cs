@@ -12,11 +12,14 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/departments")]
     public class DepartmentsController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
         // GET: api/Departments
+        [HttpGet]
+        [Route("")]
         public IEnumerable<object> GetDepartments()
         {
             var results = db.Departments.Include("Projects").Include("Students").ToList();//.MakeViewModel();
@@ -24,6 +27,8 @@ namespace EdVision.WebApi.Controllers
         }
 
         // GET: api/Departments/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Department))]
         public IHttpActionResult GetDepartment(int id)
         {
@@ -36,77 +41,79 @@ namespace EdVision.WebApi.Controllers
             return Ok(department);
         }
 
+        [HttpGet]
+        [Route("byuniversity/{universityId:int}")]
         public IEnumerable<Department> GetDepartmentsByUniversity(int unversityID)
         {
             return db.Universities.Find(unversityID).Departments.ToList();
         }
 
 
-        // PUT: api/Departments/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutDepartment(int id, Department department)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Departments/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutDepartment(int id, Department department)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != department.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != department.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(department).State = EntityState.Modified;
+        //    db.Entry(department).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DepartmentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!DepartmentExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Departments
-        [ResponseType(typeof(Department))]
-        public IHttpActionResult PostDepartment(Department department)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Departments
+        //[ResponseType(typeof(Department))]
+        //public IHttpActionResult PostDepartment(Department department)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Departments.Add(department);
-            db.SaveChanges();
+        //    db.Departments.Add(department);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = department.Id }, department);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = department.Id }, department);
+        //}
 
-        // DELETE: api/Departments/5
-        [ResponseType(typeof(Department))]
-        public IHttpActionResult DeleteDepartment(int id)
-        {
-            Department department = db.Departments.Find(id);
-            if (department == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Departments/5
+        //[ResponseType(typeof(Department))]
+        //public IHttpActionResult DeleteDepartment(int id)
+        //{
+        //    Department department = db.Departments.Find(id);
+        //    if (department == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Departments.Remove(department);
-            db.SaveChanges();
+        //    db.Departments.Remove(department);
+        //    db.SaveChanges();
 
-            return Ok(department);
-        }
+        //    return Ok(department);
+        //}
 
         protected override void Dispose(bool disposing)
         {

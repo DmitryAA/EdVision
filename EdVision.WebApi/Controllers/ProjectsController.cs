@@ -12,31 +12,49 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/projects")]
     public class ProjectsController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
-        // GET: api/Projects
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Project> GetProjects()
         {
             return db.Projects.ToList();
         }
-        // GET: api/Projects
-        public IEnumerable<Project> GetProjectsGetByUniversityID(int universityID)
+
+        [HttpGet]
+        [Route("{id:int}")]
+        [ResponseType(typeof(Project))]
+        public IHttpActionResult GetProject(int id) {
+            Project project = db.Projects.Find(id);
+            if (project == null) {
+                return NotFound();
+            }
+
+            return Ok(project);
+        }
+
+        [HttpGet]
+        [Route("byuniversity/{universityID:int}")]
+        public IEnumerable<Project> GetProjectsGetByUniversity(int universityID)
         {
             var university = db.Universities.Find(universityID);
             var departments = university.Departments.SelectMany(d=> d.Directions).SelectMany(x => x.Projects).Distinct().ToList();
             return departments;
         }
 
-        // GET: api/Projects
+        [HttpGet]
+        [Route("bycompany/{companyID:int}")]
         public IEnumerable<Project> GetProjectsGetByCompany(int companyID)
         {
             var result = db.Projects.Where(x => x.Company.Id == companyID);
             return result;
         }
 
-        // GET: api/Projects
+        [HttpGet]
+        [Route("bycompany/{companyID:int}/university/{universityID:int}")]
         public IEnumerable<Project> GetProjectsGetByCompanyAndUniversity(int companyID, int universityID)
         {
             var university = db.Universities.Find(universityID);
@@ -44,84 +62,71 @@ namespace EdVision.WebApi.Controllers
             return departments;
         }
 
-        // GET: api/Projects/5
-        [ResponseType(typeof(Project))]
-        public IHttpActionResult GetProject(int id)
-        {
-            Project project = db.Projects.Find(id);
-            if (project == null)
-            {
-                return NotFound();
-            }
+        //// PUT: api/Projects/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutProject(int id, Project project)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            return Ok(project);
-        }
+        //    if (id != project.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-        // PUT: api/Projects/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutProject(int id, Project project)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    db.Entry(project).State = EntityState.Modified;
 
-            if (id != project.Id)
-            {
-                return BadRequest();
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!ProjectExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            db.Entry(project).State = EntityState.Modified;
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProjectExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //// POST: api/Projects
+        //[ResponseType(typeof(Project))]
+        //public IHttpActionResult PostProject(Project project)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    db.Projects.Add(project);
+        //    db.SaveChanges();
 
-        // POST: api/Projects
-        [ResponseType(typeof(Project))]
-        public IHttpActionResult PostProject(Project project)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    return CreatedAtRoute("DefaultApi", new { id = project.Id }, project);
+        //}
 
-            db.Projects.Add(project);
-            db.SaveChanges();
+        //// DELETE: api/Projects/5
+        //[ResponseType(typeof(Project))]
+        //public IHttpActionResult DeleteProject(int id)
+        //{
+        //    Project project = db.Projects.Find(id);
+        //    if (project == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return CreatedAtRoute("DefaultApi", new { id = project.Id }, project);
-        }
+        //    db.Projects.Remove(project);
+        //    db.SaveChanges();
 
-        // DELETE: api/Projects/5
-        [ResponseType(typeof(Project))]
-        public IHttpActionResult DeleteProject(int id)
-        {
-            Project project = db.Projects.Find(id);
-            if (project == null)
-            {
-                return NotFound();
-            }
-
-            db.Projects.Remove(project);
-            db.SaveChanges();
-
-            return Ok(project);
-        }
+        //    return Ok(project);
+        //}
 
         protected override void Dispose(bool disposing)
         {
