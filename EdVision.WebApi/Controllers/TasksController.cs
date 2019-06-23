@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using EdVision.WebApi.Model;
-using static EdVision.WebApi.ViewModel.GradeViewModel;
+
 
 namespace EdVision.WebApi.Controllers
 {
@@ -18,19 +18,22 @@ namespace EdVision.WebApi.Controllers
         private MentoringContext db = new MentoringContext();
 
         // GET: api/Tasks
-        public IEnumerable<TaskViewModel> GetTasks()
+        public IEnumerable<Task> GetTasks()
         {
-            var persons = db.Persons.ToList();
             var tasks = db.Tasks.ToList();
-            var taskVMs = tasks.Select(t => new TaskViewModel(t));
-            return taskVMs;
+            return tasks;
+        }
+
+        public IEnumerable<Task> GetTasksByProjectID(int projectID)
+        {
+            return db.Projects.Find(projectID).Tasks.ToList();
         }
 
         // GET: api/Tasks/5
-        [ResponseType(typeof(TaskViewModel))]
+        [ResponseType(typeof(Task))]
         public IHttpActionResult GetTask(int id)
         {
-            TaskViewModel task = new TaskViewModel(db.Tasks.Find(id));
+            Task task = db.Tasks.Find(id);
             if (task == null)
             {
                 return NotFound();

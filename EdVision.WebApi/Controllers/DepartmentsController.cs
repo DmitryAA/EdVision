@@ -36,6 +36,12 @@ namespace EdVision.WebApi.Controllers
             return Ok(department);
         }
 
+        public IEnumerable<Department> GetDepartmentsByUniversity(int unversityID)
+        {
+            return db.Universities.Find(unversityID).Departments.ToList();
+        }
+
+
         // PUT: api/Departments/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDepartment(int id, Department department)

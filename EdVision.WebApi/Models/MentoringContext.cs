@@ -80,5 +80,11 @@ namespace EdVision.WebApi.Model
             universityEntity.HasRequired(u => u.Address).WithOptional().Map(m => m.MapKey("address_id"));
             universityEntity.HasMany(u => u.Departments).WithOptional().Map(m => m.MapKey("university_id"));
         }
+
+        //public System.Data.Entity.DbSet<EdVision.WebApi.Model.CourseResult> CourseResults { get; set; }
+
+        //public System.Data.Entity.DbSet<EdVision.WebApi.Model.Grade> Grades { get; set; }
+
+        //public System.Data.Entity.DbSet<EdVision.WebApi.Model.JobStatitics> JobStatitics { get; set; }
     }
 }

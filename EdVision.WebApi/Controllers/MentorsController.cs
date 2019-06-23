@@ -35,6 +35,34 @@ namespace EdVision.WebApi.Controllers
             return Ok(mentor);
         }
 
+        // GET: api/Students
+        public IEnumerable<Mentor> GetLecturerByUniversity(int universityID)
+        {
+            var university = db.Universities.Find(universityID);
+            var projects = university.Departments.SelectMany(x => x.Projects); ;
+            var tasks = projects.SelectMany(x => x.Tasks);
+            return tasks.Select(x => x.MentorGrade.GradingPerson).Cast<Mentor>().ToList();
+        }
+
+        // GET: api/Students
+        public IEnumerable<Mentor> GetMentorByCompany(int companyID)
+        {
+            var compaies = db.Companies.Find(companyID);
+            return db.Mentors.Where(x => x.Company.Id == companyID).ToList();
+        }
+
+        // GET: api/Students
+        public IEnumerable<Mentor> GetMentorByProjectID(int projectID)
+        {
+            var project = db.Projects.Find(projectID);
+            return project.Tasks.Select(x=>x.MentorGrade.GradingPerson).Cast<Mentor>();
+        }
+
+
+        
+
+
+
         // PUT: api/Mentors/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutMentor(int id, Mentor mentor)
