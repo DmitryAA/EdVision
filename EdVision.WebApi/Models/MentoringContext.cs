@@ -19,7 +19,11 @@ namespace EdVision.WebApi.Model
         public DbSet<Project> Projects { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<Grade> Grades { get; set; }
         public DbSet<University> Universities { get; set; }
+        public DbSet<CourseResult> CourseResults { get; set; }
+        public DbSet<JobStatitics> JobStatitics { get; set; }
+
 
         public MentoringContext(): base("name=Model1") {
 
@@ -42,14 +46,6 @@ namespace EdVision.WebApi.Model
             departmentEntity.HasMany(d => d.Projects).WithOptional(p => p.Department).Map(m => m.MapKey("department_id"));
             departmentEntity.HasMany(d => d.Statitics).WithOptional(s => s.Department).Map(m => m.MapKey("department_id"));
             departmentEntity.HasMany(d => d.Students).WithOptional(s => s.Department).Map(m => m.MapKey("department_id"));
-
-            //var departmentToDirectionMappingEntity = modelBuilder.Entity<DepartmentToEducationDirectionMapping>();
-            //departmentToDirectionMappingEntity.HasKey(m => new { m.DepartmentId, m.EducationDirectionId });
-
-            //var educationDirectionEntity = modelBuilder.Entity<EducationDirection>();
-            //educationDirectionEntity.HasMany(e => e.Mappings).WithOptional(m => m.Direction).HasForeignKey(m => m.EducationDirectionId);
-            //educationDirectionEntity.HasMany(e => e.Projects).WithOptional(p => p.Direction).Map(m => m.MapKey("education_direction_id"));
-            //educationDirectionEntity.HasMany(d => d.Students).WithOptional(s => s.Direction).Map(m => m.MapKey("education_direction_id"));
 
             modelBuilder.Entity<Grade>().HasRequired(g => g.GradingPerson).WithMany().Map(m => m.MapKey("grading_person_id"));
 

@@ -19,14 +19,14 @@ namespace EdVision.WebApi.Controllers
         // GET: api/Universities
         public IEnumerable<University> GetUniversities()
         {
-            return db.Universities.ToList();
+            return db.Universities.Include("Departments").ToList();
         }
 
         // GET: api/Universities/5
         [ResponseType(typeof(University))]
         public IHttpActionResult GetUniversity(int id)
         {
-            University university = db.Universities.Find(id);
+            University university = db.Universities.Include("Departments").FirstOrDefault(u => u.Id == id);
             if (university == null)
             {
                 return NotFound();

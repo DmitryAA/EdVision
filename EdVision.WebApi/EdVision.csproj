@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -125,11 +124,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -151,6 +145,31 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906222127568_InitialCreate.cs" />
+    <Compile Include="Migrations\201906222127568_InitialCreate.Designer.cs">
+      <DependentUpon>201906222127568_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906222150164_Update #1.cs" />
+    <Compile Include="Migrations\201906222150164_Update #1.Designer.cs">
+      <DependentUpon>201906222150164_Update #1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906222220560_Update #2.cs" />
+    <Compile Include="Migrations\201906222220560_Update #2.Designer.cs">
+      <DependentUpon>201906222220560_Update #2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906222245100_Updte #3.cs" />
+    <Compile Include="Migrations\201906222245100_Updte #3.Designer.cs">
+      <DependentUpon>201906222245100_Updte #3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906222247514_Update #4.cs" />
+    <Compile Include="Migrations\201906222247514_Update #4.Designer.cs">
+      <DependentUpon>201906222247514_Update #4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906222249062_Update #5.cs" />
+    <Compile Include="Migrations\201906222249062_Update #5.Designer.cs">
+      <DependentUpon>201906222249062_Update #5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Company.cs" />
@@ -184,6 +203,26 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906222127568_InitialCreate.resx">
+      <DependentUpon>201906222127568_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906222150164_Update #1.resx">
+      <DependentUpon>201906222150164_Update #1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906222220560_Update #2.resx">
+      <DependentUpon>201906222220560_Update #2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906222245100_Updte #3.resx">
+      <DependentUpon>201906222245100_Updte #3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906222247514_Update #4.resx">
+      <DependentUpon>201906222247514_Update #4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906222249062_Update #5.resx">
+      <DependentUpon>201906222249062_Update #5.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -212,12 +251,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
