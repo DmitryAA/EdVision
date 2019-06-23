@@ -15,7 +15,5 @@ namespace EdVision.WebApi.Model
         public int Year { get; set; }
         public int GotJoStudentNumbers { get; set; }
         public int TotalStudentNumber { get; set; }
-
-        public Department Department { get; set; }
     }
 }

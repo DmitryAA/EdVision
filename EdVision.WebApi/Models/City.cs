@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EdVision.WebApi.Model
 {
-    public class City
+    public partial class City
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -15,15 +15,15 @@ namespace EdVision.WebApi.Model
         Rejected
     }
 
-    public class Task {
+    public partial class Task {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
         public TaskStatus Status { get; set; }
-        public Grade LecturerGrade { get; set; }
-        public Grade MentorGrade { get; set; }
-        public Student Performer { get; set; }
-        public Project Project { get; set; }
+        public virtual Grade LecturerGrade { get; set; }
+        public virtual Grade MentorGrade { get; set; }
+        public virtual Student Performer { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

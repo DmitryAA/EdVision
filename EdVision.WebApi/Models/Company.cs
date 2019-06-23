@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EdVision.WebApi.Model
 {
-    public class Company {
+    public partial class Company {
         public Company() {
             Mentors = new HashSet<Mentor>();
         }
@@ -19,7 +19,7 @@ namespace EdVision.WebApi.Model
         public string Name { get; set; }
         public string LegalName { get; set; }
         public string Description { get; set; }
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
         public double Rating { get; set; }
 
         // TODO: Rename

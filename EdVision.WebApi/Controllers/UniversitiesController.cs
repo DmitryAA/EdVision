@@ -19,7 +19,8 @@ namespace EdVision.WebApi.Controllers
         // GET: api/Universities
         public IEnumerable<University> GetUniversities()
         {
-            return db.Universities.Include("Departments").ToList();
+            //db.Universities.First().Address.City
+            return db.Universities.Include("Departments")/*.Include("Address"*//*.City").Include("City.Address*//*)*/.ToList();
         }
 
         // GET: api/Universities/5

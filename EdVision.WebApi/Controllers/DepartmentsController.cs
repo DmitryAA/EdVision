@@ -19,7 +19,7 @@ namespace EdVision.WebApi.Controllers
         // GET: api/Departments
         public IEnumerable<Department> GetDepartments()
         {
-            return db.Departments.ToList();
+            return db.Departments.Include("Projects").Include("Students").ToList();
         }
 
         // GET: api/Departments/5

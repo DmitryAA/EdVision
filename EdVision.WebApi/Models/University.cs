@@ -9,16 +9,16 @@ namespace EdVision.WebApi.Model
 {
 
 
-    public class University {
+    public partial class University {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Name { get; set; }
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
         public double FederalRating { get; set; }
 
-        public ICollection<Department> Departments { get; set; }
+        public virtual ICollection<Department> Departments { get; set; }
         public double MeanGrants { get; set; }
         public double? HostelPrice { get; set; }
 

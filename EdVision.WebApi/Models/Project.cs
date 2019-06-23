@@ -25,7 +25,7 @@ namespace EdVision.WebApi.Model
         Required
     }
 
-    public class Project {
+    public partial class Project {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -36,11 +36,11 @@ namespace EdVision.WebApi.Model
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public Department Department { get; set; }
-        public EducationDirection Direction { get; set; }
-        public Company Company { get; set; }
+        public virtual Department Department { get; set; }
+        public virtual EducationDirection Direction { get; set; }
+        public virtual Company Company { get; set; }
         public ProjectType Type {get; set;}
         public ProjectCategory Category { get; set; }
-        public ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

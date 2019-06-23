@@ -5,26 +5,30 @@ using System.Threading.Tasks;
 
 namespace EdVision.WebApi.Model
 {
-    public class Person {
+    public partial class Person {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PatronimicName { get; set; }
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
         public DateTime Birthday { get; set; }
     }
 
-    public class Mentor : Person {
-        public Company Company { get; set; }
+    public partial class Mentor : Person {
+        public virtual Company Company { get; set; }
         public string JobTitle { get; set; }
     }
 
-    public class Student : Person {
-        public Department Department { get; set; }
-        public EducationDirection Direction { get; set; }
+    public partial class Student : Person {
+        public Student() {
+            Tasks = new HashSet<Task>();
+            ProjectResults = new HashSet<CourseResult>();
+        }
+        public virtual Department Department { get; set; }
+        public virtual EducationDirection Direction { get; set; }
 
-        public ICollection<Task> Tasks { get; set; }
-        public ICollection<CourseResult> ProjectResults { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<CourseResult> ProjectResults { get; set; }
     }
 
     public class Lecturer: Person {

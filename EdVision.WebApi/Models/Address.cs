@@ -14,7 +14,7 @@ namespace EdVision.WebApi.Model
         public int Id { get; set; }
 
         public string AddressString { get; set; }
-        public City City { get; set; }
+        public virtual City City { get; set; }
         public string Coordinates { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }

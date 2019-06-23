@@ -11,7 +11,7 @@ namespace EdVision.WebApi.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public Student Performer { get; set; }
+        public virtual Student Performer { get; set; }
 
         public virtual Project EstimatedProject { get; set; }
         public virtual Grade LecturerGrade { get; set; }

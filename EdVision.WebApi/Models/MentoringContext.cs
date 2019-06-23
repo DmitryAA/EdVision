@@ -44,8 +44,8 @@ namespace EdVision.WebApi.Model
             var departmentEntity = modelBuilder.Entity<Department>();
             departmentEntity.HasMany(d => d.Directions).WithMany(m => m.Departments).Map(m => m.MapLeftKey("department_id").MapRightKey("education_directions_id").ToTable("DepartementsToEducationDirectionsMappings"));
             departmentEntity.HasMany(d => d.Projects).WithOptional(p => p.Department).Map(m => m.MapKey("department_id"));
-            departmentEntity.HasMany(d => d.Statitics).WithOptional(s => s.Department).Map(m => m.MapKey("department_id"));
             departmentEntity.HasMany(d => d.Students).WithOptional(s => s.Department).Map(m => m.MapKey("department_id"));
+            departmentEntity.HasMany(d => d.Statitics).WithOptional().Map(m => m.MapKey("department_id"));
 
             modelBuilder.Entity<Grade>().HasRequired(g => g.GradingPerson).WithMany().Map(m => m.MapKey("grading_person_id"));
 

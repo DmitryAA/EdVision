@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EdVision.WebApi.Model
 {
-    public class EducationDirection
+    public partial class EducationDirection
     {
         public EducationDirection() {
             Projects = new HashSet<Project>();

@@ -7,20 +7,28 @@ using System.Threading.Tasks;
 
 namespace EdVision.WebApi.Model
 {
-    public class Department
+    public partial class Department
     {
+        public Department() {
+            Projects = new HashSet<Project>();
+            Students = new HashSet<Student>();
+            Statitics = new HashSet<JobStatitics>();
+            Directions = new HashSet<EducationDirection>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
-       // public ICollection<DepartmentToEducationDirectionMapping> Mappings { get; set; }
+       
 
 
-        public ICollection<Project> Projects { get; set; }
-        public ICollection<Student> Students { get; set; } 
-        public ICollection<JobStatitics> Statitics { get; set; }
+
+        public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Student> Students { get; set; } 
+        public virtual ICollection<JobStatitics> Statitics { get; set; }
 
        
-        public ICollection<EducationDirection> Directions { get; set; }
+        public virtual ICollection<EducationDirection> Directions { get; set; }
     }
 }
