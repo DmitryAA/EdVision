@@ -21,6 +21,28 @@ namespace EdVision.WebApi.Controllers
         {
             return db.Projects.ToList();
         }
+        // GET: api/Projects
+        public IEnumerable<Project> GetProjectsGetByUniversityID(int universityID)
+        {
+            var university = db.Universities.Find(universityID);
+            var departments = university.Departments.SelectMany(x => x.Projects).Distinct().ToList();
+            return departments;
+        }
+
+        // GET: api/Projects
+        public IEnumerable<Project> GetProjectsGetByCompany(int companyID)
+        {
+            var result = db.Projects.Where(x => x.Company.Id == companyID);
+            return result;
+        }
+
+        // GET: api/Projects
+        public IEnumerable<Project> GetProjectsGetByCompanyAndUniversity(int companyID, int universityID)
+        {
+            var university = db.Universities.Find(universityID);
+            var departments = university.Departments.SelectMany(x => x.Projects).Where(x=>x.Company.Id==companyID).Distinct().ToList();
+            return departments;
+        }
 
         // GET: api/Projects/5
         [ResponseType(typeof(Project))]
