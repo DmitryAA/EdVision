@@ -3,3 +3,7 @@ EdVision.WebApi/obj
 *.user
 packages
 .vs
+.idea
+front/node_modules/
+front/www/builds
+front/assets

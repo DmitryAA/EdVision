@@ -1,0 +1,14 @@
+@import "~style";
+
+$block-name: 'b-site';
+
+.#{$block-name} {
+	&__content {
+		@include xy-grid-container();
+
+		.row {
+			@include xy-grid();
+			@include xy-gutters($negative: true);
+		}
+	}
+}

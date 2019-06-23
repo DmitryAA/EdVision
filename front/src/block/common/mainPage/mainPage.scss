@@ -1,0 +1,10 @@
+@import "~style";
+$block-name: 'mainPage';
+
+.#{$block-name} {
+	&__title {
+		@include grid-col(12);
+
+		text-align: center;
+	}
+}
