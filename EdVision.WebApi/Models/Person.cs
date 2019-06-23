@@ -19,7 +19,7 @@ namespace EdVision.WebApi.Model
     }
 
     public partial class Mentor : Person {
-        public virtual Company Company { get; set; }
+        //public virtual Company Company { get; set; }
         public string JobTitle { get; set; }
     }
 

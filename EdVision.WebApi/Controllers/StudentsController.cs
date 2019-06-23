@@ -34,10 +34,7 @@ namespace EdVision.WebApi.Controllers
         public Portfolio GetPortfolio(int studentID)
         {
             var tasks = db.Projects.SelectMany(x => x.Tasks.Where(xx => xx.Performer.Id == studentID)).Include("LecturerGrade").Include("MentorGrade").ToList();
-            foreach (var task in tasks)
-            {
-                task.Project = db.Projects.FirstOrDefault(x => x.Tasks.Contains(task)); 
-            }
+            var projects = db.Projects.Where(p => p.Tasks.Intersect(tasks).Count() > 0);            
             double mentorRaiting = tasks.Average(x => (double)x.MentorGrade.Value);
             double lectureGrade = tasks.Average(x => (double)x.LecturerGrade.Value);
             var student = db.Students.Find(studentID);

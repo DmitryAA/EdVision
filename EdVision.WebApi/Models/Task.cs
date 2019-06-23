@@ -26,6 +26,6 @@ namespace EdVision.WebApi.Model
         public virtual Grade LecturerGrade { get; set; }
         public virtual Grade MentorGrade { get; set; }
         public virtual Student Performer { get; set; }
-        public virtual Project Project { get; set; }
+        //public virtual Project Project { get; set; }
     }
 }

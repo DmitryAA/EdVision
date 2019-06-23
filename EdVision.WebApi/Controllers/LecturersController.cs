@@ -39,7 +39,7 @@ namespace EdVision.WebApi.Controllers
         public IEnumerable<Lecturer> GetLecturerByUniversity(int universityID)
         {
             var university = db.Universities.Find(universityID);
-            var projects = university.Departments.SelectMany(x=>x.Directions.SelectMany(xx=>xx.Projects); ;
+            var projects = university.Departments.SelectMany(x=>x.Directions.SelectMany(xx=>xx.Projects)) ;
             var tasks =  projects.SelectMany(x => x.Tasks);
             return tasks.Select(x => x.LecturerGrade.GradingPerson).Cast<Lecturer>().ToList();
         }

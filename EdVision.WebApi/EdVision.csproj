@@ -153,6 +153,10 @@
     <Compile Include="Migrations\201906230638181_1234.Designer.cs">
       <DependentUpon>201906230638181_1234.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906230650148_12345.cs" />
+    <Compile Include="Migrations\201906230650148_12345.Designer.cs">
+      <DependentUpon>201906230650148_12345.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\City.cs" />
@@ -195,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906230638181_1234.resx">
       <DependentUpon>201906230638181_1234.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906230650148_12345.resx">
+      <DependentUpon>201906230650148_12345.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

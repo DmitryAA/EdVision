@@ -40,7 +40,7 @@ namespace EdVision.WebApi.Model
 
             var companyEntity = modelBuilder.Entity<Company>();
             companyEntity.HasRequired(c => c.Address).WithOptional().Map(m => m.MapKey("address_id") );
-            companyEntity.HasMany(c => c.Mentors).WithRequired(m => m.Company).Map(m => m.MapKey("CompanyId"));
+            companyEntity.HasMany(c => c.Mentors).WithOptional().Map(m => m.MapKey("CompanyId"));
 
             var departmentEntity = modelBuilder.Entity<Department>();
             departmentEntity.HasMany(d => d.Directions).WithOptional().Map(m => m.MapKey("educational_direction_id"));//.WithMany(m => m.Departments).Map(m => m.MapLeftKey("department_id").MapRightKey("education_directions_id").ToTable("DepartementsToEducationDirectionsMappings"));
@@ -72,8 +72,10 @@ namespace EdVision.WebApi.Model
             projectResult.HasRequired(r => r.LecturerGrade).WithOptional().Map(m => m.MapKey("lecturer_grade_id"));
             projectResult.HasRequired(r => r.MentorGrade).WithOptional().Map(m => m.MapKey("mentor_grade_id"));
 
+            var projectEntity = modelBuilder.Entity<Project>();
+            projectEntity.HasMany(p => p.Tasks).WithOptional().Map(m => m.MapKey("project_id"));
+
             var taskEntity = modelBuilder.Entity<Task>();
-            taskEntity.HasOptional(t => t.Project).WithMany(p => p.Tasks).Map(m => m.MapKey("project_id"));
             taskEntity.HasRequired(t => t.LecturerGrade).WithOptional().Map(m => m.MapKey("lecturer_grade_id"));
             taskEntity.HasRequired(t => t.MentorGrade).WithOptional().Map(m => m.MapKey("mentor_grade_id"));
 
