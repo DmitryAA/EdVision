@@ -1,0 +1,9 @@
+@import "~style";
+
+$block-name: 'b-student';
+
+.#{$block-name} {
+	&__info {
+		@include xy-cell(12);
+	}
+}

@@ -1,0 +1,13 @@
+@import "~style";
+
+$block-name: 'b-portfolio';
+
+.#{$block-name} {
+	&__info {
+		@include xy-cell(7);
+	}
+
+	&__tasks {
+		@include xy-cell(5);
+	}
+}
