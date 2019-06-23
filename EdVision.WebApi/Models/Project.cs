@@ -34,10 +34,8 @@ namespace EdVision.WebApi.Model
         public string Comment { get; set; }
 
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
-        public virtual Department Department { get; set; }
-        public virtual EducationDirection Direction { get; set; }
         public virtual Company Company { get; set; }
         public ProjectType Type {get; set;}
         public ProjectCategory Category { get; set; }

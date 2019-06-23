@@ -23,7 +23,7 @@ namespace EdVision.WebApi.Model
         public DbSet<University> Universities { get; set; }
         public DbSet<CourseResult> CourseResults { get; set; }
         public DbSet<JobStatitics> JobStatitics { get; set; }
-
+        public DbSet<Person> Persons { get; set; }
 
         public MentoringContext(): base("name=Model1") {
 
@@ -42,9 +42,9 @@ namespace EdVision.WebApi.Model
             companyEntity.HasMany(c => c.Mentors).WithRequired(m => m.Company).Map(m => m.MapKey("CompanyId"));
 
             var departmentEntity = modelBuilder.Entity<Department>();
-            departmentEntity.HasMany(d => d.Directions).WithMany(m => m.Departments).Map(m => m.MapLeftKey("department_id").MapRightKey("education_directions_id").ToTable("DepartementsToEducationDirectionsMappings"));
-            departmentEntity.HasMany(d => d.Projects).WithOptional(p => p.Department).Map(m => m.MapKey("department_id"));
-            departmentEntity.HasMany(d => d.Students).WithOptional(s => s.Department).Map(m => m.MapKey("department_id"));
+            departmentEntity.HasMany(d => d.Directions).WithOptional().Map(m => m.MapKey("educational_direction_id"));//.WithMany(m => m.Departments).Map(m => m.MapLeftKey("department_id").MapRightKey("education_directions_id").ToTable("DepartementsToEducationDirectionsMappings"));
+            //departmentEntity.HasMany(d => d.Projects).WithOptional().Map(m => m.MapKey("department_id"));
+            //departmentEntity.HasMany(d => d.Students).WithOptional().Map(m => m.MapKey("department_id"));
             departmentEntity.HasMany(d => d.Statitics).WithOptional().Map(m => m.MapKey("department_id"));
 
             modelBuilder.Entity<Grade>().HasRequired(g => g.GradingPerson).WithMany().Map(m => m.MapKey("grading_person_id"));
@@ -53,18 +53,19 @@ namespace EdVision.WebApi.Model
             personEntity.HasRequired(p => p.Address).WithOptional().Map(m => m.MapKey("address_id"));
 
             var studentEntity = modelBuilder.Entity<Student>();
-            //studentEntity.Map(m => m.MapInheritedProperties().ToTable("Students"));
-            studentEntity.HasMany(s => s.Tasks).WithOptional(t => t.Performer).Map(m => m.MapKey("performing_student_id"));
-            studentEntity.HasMany(s => s.ProjectResults).WithOptional(r => r.Performer).Map(m => m.MapKey("performing_student_id"));
+            studentEntity.ToTable("Students");
+            studentEntity.HasMany(s => s.Tasks).WithOptional().Map(m => m.MapKey("performing_student_id"));
+            studentEntity.HasMany(s => s.ProjectResults).WithOptional().Map(m => m.MapKey("performing_student_id"));
             studentEntity.HasRequired(p => p.Address).WithOptional().Map(m => m.MapKey("address_id"));
 
 
             var lecturerEntity = modelBuilder.Entity<Lecturer>();
+            lecturerEntity.ToTable("Lecturers");
             //lecturerEntity.Map(m => m.MapInheritedProperties().ToTable("Lecturer"));
 
             var mentorEntity = modelBuilder.Entity<Mentor>();
+            mentorEntity.ToTable("Mentors");
             //mentorEntity.Map(m => m.MapInheritedProperties().ToTable("Mentors"));
-            //mentorEntity.HasRequired(p => p.Address).WithOptional().Map(m => m.MapKey("address_id"));
 
             var projectResult = modelBuilder.Entity<CourseResult>();
             projectResult.HasRequired(r => r.LecturerGrade).WithOptional().Map(m => m.MapKey("lecturer_grade_id"));

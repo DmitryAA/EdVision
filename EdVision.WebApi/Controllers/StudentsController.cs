@@ -26,7 +26,7 @@ namespace EdVision.WebApi.Controllers
         [ResponseType(typeof(Student))]
         public IHttpActionResult GetStudent(int id)
         {
-            Student student = db.Students.Find(id);
+            Student student = db.Students.Include(s => s.ProjectResults).Include(s => s.Tasks).FirstOrDefault(s => s.Id == id);
             if (student == null)
             {
                 return NotFound();
