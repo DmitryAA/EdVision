@@ -12,17 +12,22 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/educationdirections")]
     public class EducationDirectionsController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
         // GET: api/EducationDirections
+        [HttpGet]
+        [Route("")]
         public IEnumerable<EducationDirection> GetEducationDirections()
         {
             return db.EducationDirections.ToList();
         }
 
         // GET: api/EducationDirections/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(EducationDirection))]
         public IHttpActionResult GetEducationDirection(int id)
         {
@@ -35,71 +40,71 @@ namespace EdVision.WebApi.Controllers
             return Ok(educationDirection);
         }
 
-        // PUT: api/EducationDirections/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutEducationDirection(int id, EducationDirection educationDirection)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/EducationDirections/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutEducationDirection(int id, EducationDirection educationDirection)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != educationDirection.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != educationDirection.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(educationDirection).State = EntityState.Modified;
+        //    db.Entry(educationDirection).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EducationDirectionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!EducationDirectionExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/EducationDirections
-        [ResponseType(typeof(EducationDirection))]
-        public IHttpActionResult PostEducationDirection(EducationDirection educationDirection)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/EducationDirections
+        //[ResponseType(typeof(EducationDirection))]
+        //public IHttpActionResult PostEducationDirection(EducationDirection educationDirection)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.EducationDirections.Add(educationDirection);
-            db.SaveChanges();
+        //    db.EducationDirections.Add(educationDirection);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = educationDirection.Id }, educationDirection);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = educationDirection.Id }, educationDirection);
+        //}
 
-        // DELETE: api/EducationDirections/5
-        [ResponseType(typeof(EducationDirection))]
-        public IHttpActionResult DeleteEducationDirection(int id)
-        {
-            EducationDirection educationDirection = db.EducationDirections.Find(id);
-            if (educationDirection == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/EducationDirections/5
+        //[ResponseType(typeof(EducationDirection))]
+        //public IHttpActionResult DeleteEducationDirection(int id)
+        //{
+        //    EducationDirection educationDirection = db.EducationDirections.Find(id);
+        //    if (educationDirection == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.EducationDirections.Remove(educationDirection);
-            db.SaveChanges();
+        //    db.EducationDirections.Remove(educationDirection);
+        //    db.SaveChanges();
 
-            return Ok(educationDirection);
-        }
+        //    return Ok(educationDirection);
+        //}
 
         protected override void Dispose(bool disposing)
         {

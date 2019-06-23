@@ -13,23 +13,28 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/tasks")]
     public class TasksController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
-        // GET: api/Tasks
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Task> GetTasks()
         {
             var tasks = db.Tasks.ToList();
             return tasks;
         }
 
+        [HttpGet]
+        [Route("byprojectid/{projectID:int}")]
         public IEnumerable<Task> GetTasksByProjectID(int projectID)
         {
             return db.Projects.Find(projectID).Tasks.ToList();
         }
 
-        // GET: api/Tasks/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Task))]
         public IHttpActionResult GetTask(int id)
         {
@@ -42,71 +47,71 @@ namespace EdVision.WebApi.Controllers
             return Ok(task);
         }
 
-        // PUT: api/Tasks/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutTask(int id, Task task)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Tasks/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutTask(int id, Task task)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != task.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != task.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(task).State = EntityState.Modified;
+        //    db.Entry(task).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TaskExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!TaskExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Tasks
-        [ResponseType(typeof(Task))]
-        public IHttpActionResult PostTask(Task task)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Tasks
+        //[ResponseType(typeof(Task))]
+        //public IHttpActionResult PostTask(Task task)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Tasks.Add(task);
-            db.SaveChanges();
+        //    db.Tasks.Add(task);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = task.Id }, task);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = task.Id }, task);
+        //}
 
-        // DELETE: api/Tasks/5
-        [ResponseType(typeof(Task))]
-        public IHttpActionResult DeleteTask(int id)
-        {
-            Task task = db.Tasks.Find(id);
-            if (task == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Tasks/5
+        //[ResponseType(typeof(Task))]
+        //public IHttpActionResult DeleteTask(int id)
+        //{
+        //    Task task = db.Tasks.Find(id);
+        //    if (task == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Tasks.Remove(task);
-            db.SaveChanges();
+        //    db.Tasks.Remove(task);
+        //    db.SaveChanges();
 
-            return Ok(task);
-        }
+        //    return Ok(task);
+        //}
 
         protected override void Dispose(bool disposing)
         {

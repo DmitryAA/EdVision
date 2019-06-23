@@ -118,8 +118,100 @@ namespace EdVision.WebApi.Migrations
             //project.Tasks.Add(task);
             //context.Tasks.Add(task);
             //context.SaveChanges();
+            
+            var city = context.Cities.FirstOrDefault();
+            var direction = context.EducationDirections.FirstOrDefault();
+            var mentor = context.Mentors.FirstOrDefault();
+            var lecturer = context.Lecturer.FirstOrDefault();
+
+            var address1 = new Address { City = city };
+            context.Addresses.Add(address1);
+            var address2 = new Address { City = city };
+            context.Addresses.Add(address2);
+
+            var student1 = new Student { FirstName = "Kirill", LastName = "Kirillov", PatronimicName = "Kirillovich", Address = address1 };
+            direction.Students.Add(student1);
+            context.Students.Add(student1);
+            var student2 = new Student { FirstName = "Dennis", LastName = "Dennisov", PatronimicName = "Dennisovich", Address = address2 };
+            direction.Students.Add(student2);
+            context.Students.Add(student2);
+
+            var task1_1 = new Task {
+                Name = "Make the Hackthon Great Again!",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(1),
+                Status = TaskStatus.Approved,
+                LecturerGrade = new Grade {
+                    GradingPerson = lecturer,
+                    Comment = "You'll made it.",
+                    Value = 69
+                },
+                MentorGrade = new Grade {
+                    Comment = "I don't think so.",
+                    GradingPerson = mentor,
+                    Value = 71
+                }
+            };
+            student1.Tasks.Add(task1_1);
+            context.Tasks.Add(task1_1);
+
+            var task1_2 = new Task {
+                Name = "Write over 9000 lines of code!",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(1),
+                Status = TaskStatus.Approved,
+                LecturerGrade = new Grade {
+                    GradingPerson = lecturer,
+                    Comment = "Wasted!",
+                    Value = 50
+                },
+                MentorGrade = new Grade {
+                    Comment = "Let the code be with you.",
+                    GradingPerson = mentor,
+                    Value = 74
+                }
+            };
+            student1.Tasks.Add(task1_2);
+            context.Tasks.Add(task1_2);
 
 
+            var task2_1 = new Task {
+                Name = "Design the greed product.",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(2),
+                Status = TaskStatus.Approved,
+                LecturerGrade = new Grade {
+                    GradingPerson = lecturer,
+                    Comment = "Shut up and take my money!",
+                    Value = 80
+                },
+                MentorGrade = new Grade {
+                    Comment = "My tressure.",
+                    GradingPerson = mentor,
+                    Value = 61
+                }
+            };
+            student1.Tasks.Add(task2_1);
+            context.Tasks.Add(task2_1);
+
+            var task2_2 = new Task {
+                Name = "Win, or loose, just have fun!",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(2),
+                Status = TaskStatus.Approved,
+                LecturerGrade = new Grade {
+                    GradingPerson = lecturer,
+                    Comment = "Have a nice day!.",
+                    Value = 95
+                },
+                MentorGrade = new Grade {
+                    Comment = "Chill, bro.",
+                    GradingPerson = mentor,
+                    Value = 99
+                }
+            };
+            student1.Tasks.Add(task2_2);
+            context.Tasks.Add(task2_2);
 
             context.SaveChanges();
         }

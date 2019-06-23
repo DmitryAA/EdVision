@@ -12,18 +12,21 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/universities")]
     public class UniversitiesController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
-        // GET: api/Universities
+        [HttpGet]
+        [Route("")]
         public IEnumerable<University> GetUniversities()
         {
             //db.Universities.First().Address.City
             return db.Universities.Include("Departments").ToList();
         }
 
-        // GET: api/Universities/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(University))]
         public IHttpActionResult GetUniversity(int id)
         {
@@ -36,71 +39,71 @@ namespace EdVision.WebApi.Controllers
             return Ok(university);
         }
 
-        // PUT: api/Universities/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutUniversity(int id, University university)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Universities/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutUniversity(int id, University university)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != university.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != university.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(university).State = EntityState.Modified;
+        //    db.Entry(university).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UniversityExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!UniversityExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Universities
-        [ResponseType(typeof(University))]
-        public IHttpActionResult PostUniversity(University university)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Universities
+        //[ResponseType(typeof(University))]
+        //public IHttpActionResult PostUniversity(University university)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Universities.Add(university);
-            db.SaveChanges();
+        //    db.Universities.Add(university);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = university.Id }, university);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = university.Id }, university);
+        //}
 
-        // DELETE: api/Universities/5
-        [ResponseType(typeof(University))]
-        public IHttpActionResult DeleteUniversity(int id)
-        {
-            University university = db.Universities.Find(id);
-            if (university == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Universities/5
+        //[ResponseType(typeof(University))]
+        //public IHttpActionResult DeleteUniversity(int id)
+        //{
+        //    University university = db.Universities.Find(id);
+        //    if (university == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Universities.Remove(university);
-            db.SaveChanges();
+        //    db.Universities.Remove(university);
+        //    db.SaveChanges();
 
-            return Ok(university);
-        }
+        //    return Ok(university);
+        //}
 
         protected override void Dispose(bool disposing)
         {
