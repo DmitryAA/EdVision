@@ -1,0 +1,62 @@
+@import "~style";
+
+$block-name: 'b-un-list';
+
+.#{$block-name} {
+	background: #111196;
+
+	&__item {
+		@include xy-cell(3);
+
+		background: #fff;
+		margin-top: 10px;
+		margin-bottom: 10px;
+
+		a {
+			text-decoration: none;
+			color: #000;
+			display: block;
+			padding: 10px;
+		}
+	}
+
+	&__name {
+		font-size: 36px;
+		line-height: 42px;
+		text-align: center;
+	}
+
+	&__city {
+		font-size: 12px;
+		line-height: 14px;
+		text-align: center;
+	}
+
+	&__line {
+		display: flex;
+		align-items: flex-end;
+	}
+
+	&__count {
+		width: 30%;
+		font-size: 14px;
+		line-height: 16px;
+		text-align: center;
+	}
+
+	&__logo {
+		width: 40%;
+		background: url('ikon-uni.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		height: 89px;
+	}
+
+	&__rating {
+		width: 30%;
+		font-size: 14px;
+		line-height: 16px;
+		text-align: center;
+	}
+}

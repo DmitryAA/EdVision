@@ -2,19 +2,39 @@
 $block-name: 'b-top';
 
 .#{$block-name} {
+	color: #111196;
+
 	&__logo {
 		@include grid-col(3);
+
+		font-size: 48px;
+
+		a {
+			text-decoration: none;
+			color: #111196;
+		}
 	}
 
-	&__slogan {
+	&__menu {
 		@include grid-col(6);
+
+		line-height: 67px;
+
+		a {
+			display: inline-block;
+			padding: 2px 5px;
+			text-decoration: none;
+			color: #111196;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	&__user {
 		@include grid-col(3);
-	}
 
-	&__menu {
-		@include grid-col(12);
+		line-height: 67px;
 	}
 }

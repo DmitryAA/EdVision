@@ -1,0 +1,31 @@
+@import "~style";
+
+$block-name: 'b-user';
+
+.#{$block-name} {
+	&__start {
+		@include xy-grid();
+		@include xy-gutters($negative: true);
+	}
+
+	&__register {
+		@include xy-cell(6);
+	}
+
+	&__login {
+		@include xy-cell(6);
+	}
+
+	&__name {
+		max-width: 300px;
+		width: 100%;
+	}
+
+	&__rank {
+		max-width: 300px;
+	}
+
+	&__info {
+		margin-top: 20px;
+	}
+}

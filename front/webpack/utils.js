@@ -13,7 +13,7 @@ module.exports = {
 		return domain;
 	},
 	hotUrl: function () {
-		return  "http://192.168.0.40"+ settings.hotPort;
+		return  "http://192.168.0.40:" + settings.hotPort;
 	},
 	publicPath: function(env) {
 		env = env || "prod";

@@ -10,7 +10,7 @@
     "build-dev": "NODE_ENV=dev webpack",
     "pkg": "yarn install",
     "install-main": "sudo npm i -g webpack babel-cli",
-    "server": "cd www;static --cors * -a 192.168.0.40"
+    "server": "cd www;static --cors'*' -a 192.168.0.40"
   },
   "browserslist": [
     "Safari >= 9",

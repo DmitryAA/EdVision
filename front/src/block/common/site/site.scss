@@ -11,4 +11,24 @@ $block-name: 'b-site';
 			@include xy-gutters($negative: true);
 		}
 	}
+
+	&--main {
+		background: url(m-bg.jpg);
+		background-position: center;
+		background-size: cover;
+		height: 100vh;
+		color: #fff;
+
+		.b-top {
+			color: #fff;
+
+			a {
+				color: #fff;
+			}
+		}
+
+		a {
+			color: #fff;
+		}
+	}
 }

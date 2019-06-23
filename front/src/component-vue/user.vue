@@ -1,24 +1,26 @@
 <template>
-	<div v-if="logined">
-		<form @submit="register">
-			<h2>Регистция</h2>
-			<input v-model="username" placeholder="Имя">
-			<select v-model="rank">
-				<option disabled value="">Выберите один из вариантов</option>
-				<option>Абитуриент</option>
-				<option>Работодатель</option>
-				<option>Преподаватель</option>
-			</select>
-			<input type="submit" value="Сделай это">
-		</form>
-		<form @submit="login">
-			<h2>Вход</h2>
-			<input v-model="username" placeholder="Имя">
-			<input type="submit" value="Пошли">
-		</form>
-	</div>
-	<div v-else>
-		Добро пожаловать
+	<div class="b-user">
+		<div v-if="logined" class="b-user__start">
+			<form @submit="register" class="b-user__register">
+				<h2>Регистция</h2>
+				<input v-model="username" placeholder="Имя" class="b-user__name"><br>
+				<select v-model="rank" class="b-user__rank">
+					<option disabled value="">Выберите один из вариантов</option>
+					<option>Абитуриент</option>
+					<option>Работодатель</option>
+					<option>Преподаватель</option>
+				</select><br>
+				<input type="submit" value="Сделай это" class="b-user__button" :disabled="!username || !rank">
+			</form>
+			<form @submit="login" class="b-user__login">
+				<h2>Вход</h2>
+				<input v-model="username" placeholder="Имя" class="b-user__name"><br>
+				<input type="submit" value="Пошли" :disabled="!username" class="b-user__button">
+			</form>
+		</div>
+		<div v-else class="b-user__info">
+			Добро пожаловать
+		</div>
 	</div>
 </template>
 

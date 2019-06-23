@@ -1,14 +1,12 @@
 <template>
 	<header v-bem>
 		<div class="row">
-			<div v-bem.logo>logo</div>
-			<div v-bem.slogan>slogan</div>
-			<div v-bem.user>Привет, {{ username }}</div>
+			<div v-bem.logo><router-link to="/">EdVision</router-link></div>
 			<nav v-bem.menu>
-				<router-link to="/">Главная</router-link>
 				<router-link to="/universities">Университеты</router-link>
 				<router-link to="/user">Кабинет</router-link>
 			</nav>
+			<div v-bem.user>Привет, {{ username }}</div>
 		</div>
 	</header>
 </template>

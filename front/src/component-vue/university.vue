@@ -1,16 +1,20 @@
 <template>
-	<div v-if="info">
-		<div><strong>Имя</strong>: {{info.Name}}</div>
-		<div><strong>Адрес</strong>: {{info.Address}}</div>
-		<div><strong>Суммарный рейтинг</strong>: {{info.FederalRating}}</div>
-		<div><strong>Средняя стипендия</strong>: {{info.MeanGrants}}</div>
-		<div><strong>Стоимость проживания</strong>: {{info.HostelPrice}}</div>
-		<h2>Подразделения</h2>
-		<section v-for="item in info.Departments">
-			<article>
-				<router-link :to="{ path: '/department/' + item.Id}">{{item.Name}}</router-link>
-			</article>
-		</section>
+	<div v-if="info" class="row b-university">
+		<div class="b-university__info">
+			<h1>{{info.Name}}</h1>
+			<div><strong>Адрес</strong>: {{info.Address.City.Name}}</div>
+			<div><strong>Средний рейтинг</strong>: {{info.FederalRating}}</div>
+			<div><strong>Средняя стипендия</strong>: {{info.MeanGrants}}</div>
+			<div><strong>Стоимость проживания</strong>: {{info.HostelPrice}}</div>
+		</div>
+		<div class="b-university__departments">
+			<h2>Подразделения</h2>
+			<section v-for="item in info.Departments">
+				<article>
+					<router-link :to="{ path: '/department/' + item.Id}">{{item.Name}}</router-link>
+				</article>
+			</section>
+		</div>
 	</div>
 </template>
 
