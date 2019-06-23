@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace EdVision.WebApi.Model
 {
     public class MentoringContext : DbContext {
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Department> Departments { get; set; }
@@ -56,7 +57,7 @@ namespace EdVision.WebApi.Model
             studentEntity.ToTable("Students");
             studentEntity.HasMany(s => s.Tasks).WithOptional().Map(m => m.MapKey("performing_student_id"));
             studentEntity.HasMany(s => s.ProjectResults).WithOptional().Map(m => m.MapKey("performing_student_id"));
-            studentEntity.HasRequired(p => p.Address).WithOptional().Map(m => m.MapKey("address_id"));
+            //studentEntity.HasRequired(p => p.Address).WithOptional().Map(m => m.MapKey("address_id"));
 
 
             var lecturerEntity = modelBuilder.Entity<Lecturer>();

@@ -26,6 +26,10 @@ namespace EdVision.WebApi.Model
     }
 
     public partial class Project {
+        public Project() {
+            Tasks = new HashSet<Task>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

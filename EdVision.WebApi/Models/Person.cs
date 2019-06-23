@@ -15,7 +15,7 @@ namespace EdVision.WebApi.Model
         public string LastName { get; set; }
         public string PatronimicName { get; set; }
         public virtual Address Address { get; set; }
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
     }
 
     public partial class Mentor : Person {
