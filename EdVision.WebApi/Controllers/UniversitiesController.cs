@@ -39,6 +39,17 @@ namespace EdVision.WebApi.Controllers
             return Ok(university);
         }
 
+        [HttpGet]
+        [Route("byregion/{regionId:int}")]
+        public IEnumerable<University> GetUniversitiesByRegion(int regionId) {
+            var universities = db.Universities.Where(u => u.Address.City.Region == db.Regions.Find(regionId));
+            return universities.ToList();
+        }
+
+
+        
+
+
         //// PUT: api/Universities/5
         //[ResponseType(typeof(void))]
         //public IHttpActionResult PutUniversity(int id, University university)
