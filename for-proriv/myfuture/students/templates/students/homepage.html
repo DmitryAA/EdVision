@@ -1,0 +1,114 @@
+﻿{% extends "phonebook/wrapper.html" %}
+{% block content %}
+
+{% load mptt_tags %}
+
+<style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /*div {
+            padding: 30px 0
+        }*/
+
+        form {
+            position: relative;
+            width: 500px;
+            margin: 0 auto;
+        }
+
+
+    .d1 input {
+        width: 100%;
+        height: 42px;
+        padding-left: 10px;
+        border: 2px solid #ed1c40;
+        border-radius: 5px;
+        outline: none;
+        /*background: #F9F0DA;*/
+        color: #9E9C9C;
+    }
+
+    .d1 button {
+        position: absolute;
+        top: 0;
+        right: 0px;
+        width: 42px;
+        height: 42px;
+        border: none;
+        background: #ed1c40;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+    }
+
+                .d1 button:before {
+                    content: "\f002";
+                    font-family: FontAwesome;
+                    font-size: 16px;
+                    color: #F9F0DA;
+                }
+                </style>
+
+<div class="d1">
+    <form action="{% url 'index' %}">
+        <input type="text" placeholder="Искать здесь..." name="search">
+        <button type="submit"></button>
+    </form>
+</div>
+
+<div class="d-table">
+    {% recursetree homepage %}
+    {% if node.is_root_node %}
+    <div class="obertka">
+        <div class="d-tr-podrazd">
+
+            <a href="podrazdelenie/{{ node.id }}" class="podrazdelenie">{{ node.name }}</a>
+        </div>
+        {% elif node.level == 1 %}
+        <div class="d-tr-otdel">
+            {{node.title}}{{ node.name }}
+        </div>
+        {% else %}
+        <div class="d-tr-sotrudnik">
+            <div class="d-td1">
+                {% if node.name != NONE %}
+                {{ node.name }}
+                {% endif %}
+
+            </div>
+            <div class="d-td2">
+                {% if node.doljnost != NONE %}
+                {{ node.doljnost }}
+                {% endif %}
+
+            </div>
+            <div class="d-td3">
+                {% if node.phone != NONE %}
+                {{ node.phone }}
+                {% endif %}
+
+            </div>
+            <div class="d-td4">
+                {% if node.adres != NONE %}
+                {{ node.adres }}
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if not node.is_leaf_node %}
+        {{ children }}
+        {% if not node.get_next_sibling %}
+    </div>
+    {% endif %}
+
+    {% endif %}
+    {% endrecursetree %}
+</div>
+
+    {% endblock %}

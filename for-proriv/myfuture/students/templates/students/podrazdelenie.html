@@ -1,0 +1,86 @@
+﻿{% extends "phonebook/wrapper.html" %}
+{% block content %}
+<div>
+    <a href="/podrazdelenie/{{ podrazd_id }}/add_otdel" class="btn btn-primary btn-lg" name="add_otdel">Добавить отдел &raquo;</a>
+    <a href="/podrazdelenie/{{ podrazd_id }}/add_sotrudnik" class="btn btn-primary btn-lg" name="add_sotrudnik">Добавить пользователя &raquo;</a>
+</div>
+{% load mptt_tags %}
+<div class="d-table">
+    <div class="obertka">
+        {% recursetree phonebook %}
+        {% if node.is_root_node %}
+        <div class="d-tr-podrazd">
+            {{ node.name }}
+        </div>
+            {% elif node.level == 1 %}
+        <div class="d-tr-otdel">
+            {% if node.ispeople == False %}
+            {{ node.name }}
+            <a href="/podrazdelenie/{{ podrazd_id }}/edit_otdel/{{ node.id }}"><i class="material-icons button edit">edit</i></a>
+            <a href="/podrazdelenie/{{ podrazd_id }}/delete/{{ node.id }}" onclick="document.getElementById('delete{{ node.id }}').style.display='inline'; return false;"><i class="material-icons button delete">delete</i></a>
+            <span id="delete{{ node.id }}" style="display:none;font-size:12px;">
+                <a href="/podrazdelenie/{{ podrazd_id }}/delete/{{ node.id }}">удалить</a> /
+                <a href="#"
+                   onclick="document.getElementById('delete{{ node.id }}').style.display='none'; return false;">отмена</a>
+            </span>
+            {% else %}
+            <div class="d-tr-sotrudnik">
+            <div class="d-td1">
+                {{ node.name }}
+            </div>
+            <div class="d-td2">
+                {{ node.doljnost }}
+            </div>
+            <div class="d-td3">
+                {{ node.phone }}
+            </div>
+            <div class="d-td4">
+                {{ node.adres }}
+            </div>
+            <div class="d-td4">
+                <a href="/podrazdelenie/{{ podrazd_id }}/edit_sotrudnik/{{ node.id }}"><i class="material-icons button edit">edit</i></a>
+                <a href="/podrazdelenie/{{ podrazd_id }}/delete/{{ node.id }}" onclick="document.getElementById('delete{{ node.id }}').style.display='inline'; return false;"><i class="material-icons button delete">delete</i></a>
+                <span id="delete{{ node.id }}" style="display:none;font-size:12px;">
+                    <a href="/podrazdelenie/{{ podrazd_id }}/delete/{{ node.id }}">удалить</a> /
+                    <a href="#"
+                       onclick="document.getElementById('delete{{ node.id }}').style.display='none'; return false;">отмена</a>
+                </span>
+            </div>
+                {% endif %}
+            </div>
+            {% else %}
+            <div class="d-tr-sotrudnik">
+                <div class="d-td1">
+                    {{ node.name }}
+                </div>
+                <div class="d-td2">
+                    {{ node.doljnost }}
+                </div>
+                <div class="d-td3">
+                    {{ node.phone }}
+                </div>
+                <div class="d-td4">
+                    {{ node.adres }}
+                </div>
+                <div class="d-td4">
+                    <a href="/podrazdelenie/{{ podrazd_id }}/edit_sotrudnik/{{ node.id }}"><i class="material-icons button edit">edit</i></a>
+                    <a href="/podrazdelenie/{{ podrazd_id }}/delete/{{ node.id }}" onclick="document.getElementById('delete{{ node.id }}').style.display='inline'; return false;"><i class="material-icons button delete">delete</i></a>
+                    <span id="delete{{ node.id }}" style="display:none; font-size:12px;">
+                        <a href="/podrazdelenie/{{ podrazd_id }}/delete/{{ node.id }}">удалить</a> /
+                        <a href="#"
+                           onclick="document.getElementById('delete{{ node.id }}').style.display='none'; return false;">отмена</a>
+                    </span>
+                </div>
+
+            </div>
+            {% endif %}
+            {% if not node.is_leaf_node %}
+
+            {{ children }}
+
+            {% endif %}
+
+            {% endrecursetree %}
+        </div>
+    </div>
+    {% endblock %}

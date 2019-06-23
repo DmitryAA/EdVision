@@ -1,0 +1,47 @@
+﻿{% extends "phonebook/wrapper.html" %}
+{% block content %}
+
+<form class="form_sotrudnik" method="POST" action="/podrazdelenie/{{ podrazdelenie_id }}/edit_sotrudnik/{{ sotrudnik.id }}">
+    {% csrf_token %}
+    <input type="hidden" name="id_sotrudnik" value="{{ sotrudnik.id }}" />
+    <p>
+        <label>ФИО:</label><br>
+        <input type="text" name="name" value="{{ sotrudnik.name }}" />
+    </p>
+    <p>
+        <label>Должность:</label><br>
+        <input type="text" name="doljnost" value="{{ sotrudnik.doljnost }}" />
+    </p>
+    <p>
+        <label>Номер телефона:</label><br>
+        <input type="text" name="phone" value="{{ sotrudnik.phone }}" />
+    </p>
+    <p>
+        <label>Номер кабинета:</label><br>
+        <input type="text" name="adres" value="{{ sotrudnik.adres }}" />
+    </p>
+    <p>
+        <label>Подразделение:</label><br>
+        <select name="SelectPodrazdelenie">
+            {% load mptt_tags %}
+            {% recursetree podrazdelenie %}
+            {% if node.is_root_node  or node.ispeople == False %}
+            {% if node.id == sotrudnik.parent_id %}
+            <option value="{{ node.id }}" selected>{{ node.name }}</option>
+            {% else %}
+            <option value="{{ node.id }}">{{ node.name }}</option>
+            {% endif %}
+            {% endif %}
+            {% if not node.is_leaf_node %}
+
+            {{ children }}
+
+            {% endif %}
+            {% endrecursetree %}
+
+        </select>
+    </p>
+    <input type="submit" value="Сохранить">
+</form>
+{% endblock %}
+

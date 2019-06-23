@@ -1,0 +1,21 @@
+﻿{% extends "phonebook/wrapper.html" %}
+{% block content %}
+<div>
+    <a href="/add" class="btn btn-primary btn-lg">Добавить пользователя &raquo;</a>
+</div>
+<h3>Телефонная книга Администрации города Смоленска</h3>
+{% load mptt_tags %}
+<ul>
+    {% recursetree phonebook %}
+    <li>
+        <h5>{{ node.name }}</h5>
+        {% if not node.is_leaf_node %}
+        <ul class="children">
+            {{ children }}
+        </ul>
+        {% endif %}
+    </li>
+    {% endrecursetree %}
+</ul>
+
+{% endblock %}
