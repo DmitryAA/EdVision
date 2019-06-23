@@ -10,6 +10,10 @@ namespace EdVision.WebApi.Model
 
 
     public partial class University {
+        public University() {
+            Departments = new HashSet<Department>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

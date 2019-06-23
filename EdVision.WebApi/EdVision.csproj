@@ -145,29 +145,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906222127568_InitialCreate.cs" />
-    <Compile Include="Migrations\201906222127568_InitialCreate.Designer.cs">
-      <DependentUpon>201906222127568_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201906230620043_123.cs" />
+    <Compile Include="Migrations\201906230620043_123.Designer.cs">
+      <DependentUpon>201906230620043_123.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906222150164_Update #1.cs" />
-    <Compile Include="Migrations\201906222150164_Update #1.Designer.cs">
-      <DependentUpon>201906222150164_Update #1.cs</DependentUpon>
+    <Compile Include="Migrations\201906230638181_1234.cs" />
+    <Compile Include="Migrations\201906230638181_1234.Designer.cs">
+      <DependentUpon>201906230638181_1234.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906222220560_Update #2.cs" />
-    <Compile Include="Migrations\201906222220560_Update #2.Designer.cs">
-      <DependentUpon>201906222220560_Update #2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906222245100_Updte #3.cs" />
-    <Compile Include="Migrations\201906222245100_Updte #3.Designer.cs">
-      <DependentUpon>201906222245100_Updte #3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906222247514_Update #4.cs" />
-    <Compile Include="Migrations\201906222247514_Update #4.Designer.cs">
-      <DependentUpon>201906222247514_Update #4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906222249062_Update #5.cs" />
-    <Compile Include="Migrations\201906222249062_Update #5.Designer.cs">
-      <DependentUpon>201906222249062_Update #5.cs</DependentUpon>
+    <Compile Include="Migrations\201906230650148_12345.cs" />
+    <Compile Include="Migrations\201906230650148_12345.Designer.cs">
+      <DependentUpon>201906230650148_12345.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -180,6 +168,7 @@
     <Compile Include="Models\JobStatitics.cs" />
     <Compile Include="Models\MentoringContext.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PortfolioItem.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Task.cs" />
@@ -198,29 +187,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906222127568_InitialCreate.resx">
-      <DependentUpon>201906222127568_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906230620043_123.resx">
+      <DependentUpon>201906230620043_123.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906222150164_Update #1.resx">
-      <DependentUpon>201906222150164_Update #1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906230638181_1234.resx">
+      <DependentUpon>201906230638181_1234.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906222220560_Update #2.resx">
-      <DependentUpon>201906222220560_Update #2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906222245100_Updte #3.resx">
-      <DependentUpon>201906222245100_Updte #3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906222247514_Update #4.resx">
-      <DependentUpon>201906222247514_Update #4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906222249062_Update #5.resx">
-      <DependentUpon>201906222249062_Update #5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906230650148_12345.resx">
+      <DependentUpon>201906230650148_12345.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

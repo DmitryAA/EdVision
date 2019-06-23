@@ -25,7 +25,7 @@ namespace EdVision.WebApi.Controllers
         public IEnumerable<Project> GetProjectsGetByUniversityID(int universityID)
         {
             var university = db.Universities.Find(universityID);
-            var departments = university.Departments.SelectMany(x => x.Projects).Distinct().ToList();
+            var departments = university.Departments.SelectMany(d=> d.Directions).SelectMany(x => x.Projects).Distinct().ToList();
             return departments;
         }
 
@@ -40,7 +40,7 @@ namespace EdVision.WebApi.Controllers
         public IEnumerable<Project> GetProjectsGetByCompanyAndUniversity(int companyID, int universityID)
         {
             var university = db.Universities.Find(universityID);
-            var departments = university.Departments.SelectMany(x => x.Projects).Where(x=>x.Company.Id==companyID).Distinct().ToList();
+            var departments = university.Departments.SelectMany(d => d.Directions).SelectMany(x => x.Projects).Where(x=>x.Company.Id==companyID).Distinct().ToList();
             return departments;
         }
 

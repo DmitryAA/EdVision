@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using EdVision.WebApi.Model;
 
+
 namespace EdVision.WebApi.Controllers
 {
     public class TasksController : ApiController
@@ -19,7 +20,13 @@ namespace EdVision.WebApi.Controllers
         // GET: api/Tasks
         public IEnumerable<Task> GetTasks()
         {
-            return db.Tasks.ToList();
+            var tasks = db.Tasks.ToList();
+            return tasks;
+        }
+
+        public IEnumerable<Task> GetTasksByProjectID(int projectID)
+        {
+            return db.Projects.Find(projectID).Tasks.ToList();
         }
 
         // GET: api/Tasks/5

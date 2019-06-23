@@ -14,7 +14,8 @@ namespace EdVision.WebApi.Controllers
 {
     public class JobStatiticsController : ApiController
     {
-        private MentoringContext db = new MentoringContext();
+       
+      /*  private MentoringContext db = new MentoringContext();
 
         // GET: api/JobStatitics
         public IEnumerable<JobStatitics> GetJobStatitics()
@@ -113,6 +114,6 @@ namespace EdVision.WebApi.Controllers
         private bool JobStatiticsExists(int id)
         {
             return db.JobStatitics.Count(e => e.Id == id) > 0;
-        }
+        }*/
     }
 }

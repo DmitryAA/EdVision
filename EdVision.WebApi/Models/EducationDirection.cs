@@ -12,7 +12,7 @@ namespace EdVision.WebApi.Model
         public EducationDirection() {
             Projects = new HashSet<Project>();
             Students = new HashSet<Student>();
-            Departments = new HashSet<Department>();
+            //Departments = new HashSet<Department>();
         }
 
         [Key]
@@ -25,6 +25,5 @@ namespace EdVision.WebApi.Model
 
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ICollection<Student> Students { get; set; }
-        public virtual ICollection<Department> Departments { get; set; }
     }
 }

@@ -17,9 +17,10 @@ namespace EdVision.WebApi.Controllers
         private MentoringContext db = new MentoringContext();
 
         // GET: api/Departments
-        public IEnumerable<Department> GetDepartments()
+        public IEnumerable<object> GetDepartments()
         {
-            return db.Departments.Include("Projects").Include("Students").ToList();
+            var results = db.Departments.Include("Projects").Include("Students").ToList();//.MakeViewModel();
+            return results;
         }
 
         // GET: api/Departments/5
@@ -34,6 +35,12 @@ namespace EdVision.WebApi.Controllers
 
             return Ok(department);
         }
+
+        public IEnumerable<Department> GetDepartmentsByUniversity(int unversityID)
+        {
+            return db.Universities.Find(unversityID).Departments.ToList();
+        }
+
 
         // PUT: api/Departments/5
         [ResponseType(typeof(void))]
@@ -114,5 +121,35 @@ namespace EdVision.WebApi.Controllers
         {
             return db.Departments.Count(e => e.Id == id) > 0;
         }
+    }
+
+    public static class DepartmentEnumerableExtensions
+    {
+        //public static IEnumerable<object> MakeViewModel(this IEnumerable<Department> departments) {
+        //    return departments.Select(d => new {
+        //        d.Id,
+        //        d.Name,
+        //        Directions = d.Directions.Select(dir => new {
+        //            dir.Id,
+        //            dir.Name,
+        //            dir.ShortDescription,
+        //            dir.Description
+        //        }),
+        //        Projects = d.Projects.Select(p => new {
+        //            p.Id,
+        //            p.Category,
+        //            p.Comment,
+        //            p.Company,
+        //            p.Description,
+        //            p.StartDate,
+        //            p.EndDate,
+        //            p.Name,
+        //            p.Tasks
+        //        }),
+        //        Statistics = d.Statitics,
+        //        Students = d.Students.Select(s => new { s.Id, s.FirstName, s.LastName, s.PatronimicName}),
+        //    }
+        //    );
+        //}
     }
 }
