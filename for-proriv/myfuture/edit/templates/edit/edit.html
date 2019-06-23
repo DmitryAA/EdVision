@@ -1,0 +1,17 @@
+{% extends "home/wrapper.html" %}
+{% block content %}
+<div align="center" style="font-size:24px">Профиль 
+{% if type_object == 0 %}
+    обучающегося
+{% elif type_object == 1 %}
+    образовательного учреждения
+{% else %}
+    работадателя
+{% endif %}</div>
+<div>
+    Название: {{ name }}
+</div>
+<div>
+
+</div>
+{% endblock %}

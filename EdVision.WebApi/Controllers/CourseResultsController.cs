@@ -12,17 +12,22 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/courseresults")]
     public class CourseResultsController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
         // GET: api/CourseResults
+        [HttpGet]
+        [Route("")]
         public IEnumerable<CourseResult> GetCourseResults()
         {
             return db.CourseResults.ToList();
         }
 
         // GET: api/CourseResults/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(CourseResult))]
         public IHttpActionResult GetCourseResult(int id)
         {
@@ -35,71 +40,73 @@ namespace EdVision.WebApi.Controllers
             return Ok(courseResult);
         }
 
-        // PUT: api/CourseResults/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutCourseResult(int id, CourseResult courseResult)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/CourseResults/5
+        //[ResponseType(typeof(void))]
+        //[HttpGet]
+        //[Route("")]
+        //public IHttpActionResult PutCourseResult(int id, CourseResult courseResult)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != courseResult.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != courseResult.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(courseResult).State = EntityState.Modified;
+        //    db.Entry(courseResult).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CourseResultExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!CourseResultExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/CourseResults
-        [ResponseType(typeof(CourseResult))]
-        public IHttpActionResult PostCourseResult(CourseResult courseResult)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/CourseResults
+        //[ResponseType(typeof(CourseResult))]
+        //public IHttpActionResult PostCourseResult(CourseResult courseResult)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.CourseResults.Add(courseResult);
-            db.SaveChanges();
+        //    db.CourseResults.Add(courseResult);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = courseResult.Id }, courseResult);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = courseResult.Id }, courseResult);
+        //}
 
-        // DELETE: api/CourseResults/5
-        [ResponseType(typeof(CourseResult))]
-        public IHttpActionResult DeleteCourseResult(int id)
-        {
-            CourseResult courseResult = db.CourseResults.Find(id);
-            if (courseResult == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/CourseResults/5
+        //[ResponseType(typeof(CourseResult))]
+        //public IHttpActionResult DeleteCourseResult(int id)
+        //{
+        //    CourseResult courseResult = db.CourseResults.Find(id);
+        //    if (courseResult == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.CourseResults.Remove(courseResult);
-            db.SaveChanges();
+        //    db.CourseResults.Remove(courseResult);
+        //    db.SaveChanges();
 
-            return Ok(courseResult);
-        }
+        //    return Ok(courseResult);
+        //}
 
         protected override void Dispose(bool disposing)
         {

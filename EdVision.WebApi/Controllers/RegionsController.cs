@@ -12,17 +12,20 @@ using EdVision.WebApi.Model;
 
 namespace EdVision.WebApi.Controllers
 {
+    [RoutePrefix("api/regions")]
     public class RegionsController : ApiController
     {
         private MentoringContext db = new MentoringContext();
 
-        // GET: api/Regions
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Region> GetRegions()
         {
             return db.Regions.ToList();
         }
 
-        // GET: api/Regions/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Region))]
         public IHttpActionResult GetRegion(int id)
         {
@@ -35,71 +38,71 @@ namespace EdVision.WebApi.Controllers
             return Ok(region);
         }
 
-        // PUT: api/Regions/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutRegion(int id, Region region)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Regions/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutRegion(int id, Region region)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != region.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != region.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(region).State = EntityState.Modified;
+        //    db.Entry(region).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RegionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!RegionExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Regions
-        [ResponseType(typeof(Region))]
-        public IHttpActionResult PostRegion(Region region)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Regions
+        //[ResponseType(typeof(Region))]
+        //public IHttpActionResult PostRegion(Region region)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Regions.Add(region);
-            db.SaveChanges();
+        //    db.Regions.Add(region);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = region.Id }, region);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = region.Id }, region);
+        //}
 
-        // DELETE: api/Regions/5
-        [ResponseType(typeof(Region))]
-        public IHttpActionResult DeleteRegion(int id)
-        {
-            Region region = db.Regions.Find(id);
-            if (region == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Regions/5
+        //[ResponseType(typeof(Region))]
+        //public IHttpActionResult DeleteRegion(int id)
+        //{
+        //    Region region = db.Regions.Find(id);
+        //    if (region == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Regions.Remove(region);
-            db.SaveChanges();
+        //    db.Regions.Remove(region);
+        //    db.SaveChanges();
 
-            return Ok(region);
-        }
+        //    return Ok(region);
+        //}
 
         protected override void Dispose(bool disposing)
         {

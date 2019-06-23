@@ -1,0 +1,13 @@
+﻿{% extends "phonebook/wrapper.html" %}
+{% block content %}
+<form method="POST" action="/podrazdelenie/{{ podrazdelenie.id }}/add_otdel">
+    {% csrf_token %}
+    {{ podrazdelenie.name }}
+    <p>
+        <label>Название отдела:</label><br>
+        <input type="text" name="name" />
+    </p>
+    <input type="hidden" name="id" value="{{ podrazdelenie.id }}">
+    <input type="submit" value="Сохранить">
+</form>
+    {% endblock %}
