@@ -1,0 +1,5 @@
+﻿EdVision.WebApi/bin
+EdVision.WebApi/obj
+*.user
+packages
+.vs
