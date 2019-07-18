@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdVision.WebApi", "EdVision.WebApi\EdVision.WebApi.csproj", "{51CD9D54-3450-4C8D-BC9E-C7157E4DA3EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdVision.Models", "EdVision.Models\EdVision.Models.csproj", "{9CE962FB-14E5-494E-A99D-A492CFFC7EE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdVision.DataLayer", "EdVision.DataLayer\EdVision.DataLayer.csproj", "{6BE4F063-0F5A-4E1E-997F-DFCC1D19AC45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51CD9D54-3450-4C8D-BC9E-C7157E4DA3EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51CD9D54-3450-4C8D-BC9E-C7157E4DA3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51CD9D54-3450-4C8D-BC9E-C7157E4DA3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51CD9D54-3450-4C8D-BC9E-C7157E4DA3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE962FB-14E5-494E-A99D-A492CFFC7EE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE962FB-14E5-494E-A99D-A492CFFC7EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE962FB-14E5-494E-A99D-A492CFFC7EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE962FB-14E5-494E-A99D-A492CFFC7EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE4F063-0F5A-4E1E-997F-DFCC1D19AC45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE4F063-0F5A-4E1E-997F-DFCC1D19AC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE4F063-0F5A-4E1E-997F-DFCC1D19AC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE4F063-0F5A-4E1E-997F-DFCC1D19AC45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,8 +1,11 @@
-﻿EdVision.WebApi/bin
-EdVision.WebApi/obj
-*.user
+bin
+obj
 packages
+.DS_Store
+
+*.user
 .vs
+.vscode
 .idea
 front/node_modules/
 front/www/builds
