@@ -8,9 +8,8 @@ using EdVision.DataLayer;
 
 namespace EdVision.WebApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-
+    [Route("api/[controller]")]
     public class CompaniesController : Controller
     {
 
@@ -34,10 +33,8 @@ namespace EdVision.WebApi.Controllers
             return Ok(company);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing) {
                 db.Dispose();
             }
             base.Dispose(disposing);
