@@ -21,7 +21,15 @@ namespace EdVision.WebApi.Controllers
 
         // GET: api/Companies
         [HttpGet]
-        public ActionResult<IEnumerable<Company>> GetCompanies() => Ok(db.Companies.ToList());
+        public ActionResult<IEnumerable<Company>> GetCompanies(
+            [FromQuery(Name="university_id")] int? universityId
+        ) {
+            IQueryable<Company> companies = db.Companies;
+            if (universityId != null) {
+                // ???
+            }
+            return Ok(companies.ToList());
+        } 
 
         // GET: api/Companies/5
         [HttpGet("{id}")]

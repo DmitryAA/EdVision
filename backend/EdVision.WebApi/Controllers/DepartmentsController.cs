@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using EdVision.Models;
 using EdVision.DataLayer;
 
@@ -18,7 +19,13 @@ namespace EdVision.WebApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Department>> GetDepartments() => Ok(db.Departments.ToList());
+        public ActionResult<IEnumerable<Department>> GetDepartments([FromQuery(Name = "university_id")] int? universityId) {
+            IQueryable<Department> departments = db.Departments;
+            if (universityId.HasValue) {
+                departments = departments.Where(d => d.UniversityId == universityId);
+            }
+            return Ok(departments.ToList());
+        }
 
         [HttpGet("{id}")]
         public ActionResult<Department> GetDepartment(int id) {
@@ -27,15 +34,6 @@ namespace EdVision.WebApi.Controllers
                 return NotFound();
             }
             return Ok(department);
-        }
-
-        [HttpGet]
-        public ActionResult<IEnumerable<Department>> GetDepartments([FromQuery(Name = "university_id")] int universityId) {
-            University university = db.Universities.Find(universityId);
-            if (university == null) {
-                return NotFound();
-            }
-            return Ok(university.Departments.ToList());
         }
 
         protected override void Dispose(bool disposing) {

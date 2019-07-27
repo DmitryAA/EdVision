@@ -13,49 +13,49 @@
 // namespace EdVision.WebApi.Controllers
 // {
 //     [RoutePrefix("api/jobstatistics")]
-//     public class JobStatiticsController : ApiController
+//     public class JobStatisticsController : ApiController
 //     {
        
 //         private MentoringContext db = new MentoringContext();
 
-//         // GET: api/JobStatitics
+//         // GET: api/JobStatistics
 //         [HttpGet]
 //         [Route("")]
-//         public IEnumerable<JobStatitics> GetJobStatitics()
+//         public IEnumerable<JobStatistics> GetJobStatistics()
 //         {
-//             return db.JobStatitics.ToList();
+//             return db.JobStatistics.ToList();
 //         }
 
-//         // GET: api/JobStatitics/5
+//         // GET: api/JobStatistics/5
 //         [HttpGet]
 //         [Route("{id:int}")]
-//         [ResponseType(typeof(JobStatitics))]
-//         public IHttpActionResult GetJobStatitics(int id)
+//         [ResponseType(typeof(JobStatistics))]
+//         public IHttpActionResult GetJobStatistics(int id)
 //         {
-//             JobStatitics jobStatitics = db.JobStatitics.Find(id);
-//             if (jobStatitics == null)
+//             JobStatistics JobStatistics = db.JobStatistics.Find(id);
+//             if (JobStatistics == null)
 //             {
 //                 return NotFound();
 //             }
 
-//             return Ok(jobStatitics);
+//             return Ok(JobStatistics);
 //         }
 
-//         //// PUT: api/JobStatitics/5
+//         //// PUT: api/JobStatistics/5
 //         //[ResponseType(typeof(void))]
-//         //public IHttpActionResult PutJobStatitics(int id, JobStatitics jobStatitics)
+//         //public IHttpActionResult PutJobStatistics(int id, JobStatistics JobStatistics)
 //         //{
 //         //    if (!ModelState.IsValid)
 //         //    {
 //         //        return BadRequest(ModelState);
 //         //    }
 
-//         //    if (id != jobStatitics.Id)
+//         //    if (id != JobStatistics.Id)
 //         //    {
 //         //        return BadRequest();
 //         //    }
 
-//         //    db.Entry(jobStatitics).State = EntityState.Modified;
+//         //    db.Entry(JobStatistics).State = EntityState.Modified;
 
 //         //    try
 //         //    {
@@ -63,7 +63,7 @@
 //         //    }
 //         //    catch (DbUpdateConcurrencyException)
 //         //    {
-//         //        if (!JobStatiticsExists(id))
+//         //        if (!JobStatisticsExists(id))
 //         //        {
 //         //            return NotFound();
 //         //        }
@@ -76,35 +76,35 @@
 //         //    return StatusCode(HttpStatusCode.NoContent);
 //         //}
 
-//         //// POST: api/JobStatitics
-//         //[ResponseType(typeof(JobStatitics))]
-//         //public IHttpActionResult PostJobStatitics(JobStatitics jobStatitics)
+//         //// POST: api/JobStatistics
+//         //[ResponseType(typeof(JobStatistics))]
+//         //public IHttpActionResult PostJobStatistics(JobStatistics JobStatistics)
 //         //{
 //         //    if (!ModelState.IsValid)
 //         //    {
 //         //        return BadRequest(ModelState);
 //         //    }
 
-//         //    db.JobStatitics.Add(jobStatitics);
+//         //    db.JobStatistics.Add(JobStatistics);
 //         //    db.SaveChanges();
 
-//         //    return CreatedAtRoute("DefaultApi", new { id = jobStatitics.Id }, jobStatitics);
+//         //    return CreatedAtRoute("DefaultApi", new { id = JobStatistics.Id }, JobStatistics);
 //         //}
 
-//         //// DELETE: api/JobStatitics/5
-//         //[ResponseType(typeof(JobStatitics))]
-//         //public IHttpActionResult DeleteJobStatitics(int id)
+//         //// DELETE: api/JobStatistics/5
+//         //[ResponseType(typeof(JobStatistics))]
+//         //public IHttpActionResult DeleteJobStatistics(int id)
 //         //{
-//         //    JobStatitics jobStatitics = db.JobStatitics.Find(id);
-//         //    if (jobStatitics == null)
+//         //    JobStatistics JobStatistics = db.JobStatistics.Find(id);
+//         //    if (JobStatistics == null)
 //         //    {
 //         //        return NotFound();
 //         //    }
 
-//         //    db.JobStatitics.Remove(jobStatitics);
+//         //    db.JobStatistics.Remove(JobStatistics);
 //         //    db.SaveChanges();
 
-//         //    return Ok(jobStatitics);
+//         //    return Ok(JobStatistics);
 //         //}
 
 //         protected override void Dispose(bool disposing)
@@ -116,9 +116,9 @@
 //             base.Dispose(disposing);
 //         }
 
-//         private bool JobStatiticsExists(int id)
+//         private bool JobStatisticsExists(int id)
 //         {
-//             return db.JobStatitics.Count(e => e.Id == id) > 0;
+//             return db.JobStatistics.Count(e => e.Id == id) > 0;
 //         }
 //     }
 // }

@@ -17,6 +17,8 @@ namespace EdVision.Models {
         public StudentTaskStatus Status { get; set; }
         public virtual Grade LecturerGrade { get; set; }
         public virtual Grade MentorGrade { get; set; }
+        public int ProjectId { get; set; }
+        
         //public virtual Student Performer { get; set; }
         //public virtual Project Project { get; set; }
     }

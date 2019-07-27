@@ -11,7 +11,6 @@ using EdVision.Models;
 namespace EdVision.DataLayer
 {
     public class UniversityStatisticsContext : IdentityDbContext<ApplicationUser> {
-        public DbSet<Address> Addresses { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Department> Departments { get; set; }
@@ -25,7 +24,7 @@ namespace EdVision.DataLayer
         public DbSet<Grade> Grades { get; set; }
         public DbSet<University> Universities { get; set; }
         public DbSet<CourseResult> CourseResults { get; set; }
-        public DbSet<JobStatitics> JobStatitics { get; set; }
+        public DbSet<JobStatistics> JobStatistics { get; set; }
         public DbSet<Person> Persons { get; set; }
 
         public UniversityStatisticsContext(DbContextOptions options) : base(options) {
@@ -33,12 +32,14 @@ namespace EdVision.DataLayer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
+            
+            var contactEntity = modelBuilder.Entity<Contact>();
+            contactEntity.HasKey(c => c.Id);
 
-            var addressEntity = modelBuilder.Entity<Address>();
-            addressEntity.Property(a => a.Id).ValueGeneratedOnAdd();
-            addressEntity.HasKey(a => a.Id);
-            addressEntity.HasOne(a => a.City).WithMany().HasForeignKey("CityId");
-
+            // var addressEntity = modelBuilder.Entity<Address>();
+            // addressEntity.Property(a => a.Id).ValueGeneratedOnAdd();
+            // addressEntity.HasKey(a => a.Id);
+            // addressEntity.HasOne(a => a.City).WithMany().HasForeignKey("CityId");
 
             var cityEntity = modelBuilder.Entity<City>();
             cityEntity.Property(c => c.Id).ValueGeneratedOnAdd();
@@ -48,13 +49,13 @@ namespace EdVision.DataLayer
             var companyEntity = modelBuilder.Entity<Company>();
             companyEntity.Property(c => c.Id).ValueGeneratedOnAdd();
             companyEntity.HasKey(c => c.Id);
-            companyEntity.HasOne(c => c.Address).WithOne().HasForeignKey<Company>("AddressId");
+            companyEntity.HasMany(c => c.Contacts).WithOne().HasForeignKey("CompanyId");
 
             var departmentEntity = modelBuilder.Entity<Department>();
             departmentEntity.Property(d => d.Id).ValueGeneratedOnAdd();
             departmentEntity.HasKey(d => d.Id);
             departmentEntity.HasMany(d => d.Directions).WithOne().HasForeignKey("EducationalDirectionId");
-            departmentEntity.HasMany(d => d.Statitics).WithOne().HasForeignKey("DepartmentId");
+            departmentEntity.HasMany(d => d.Statistics).WithOne().HasForeignKey("DepartmentId");
 
             var gradeEntity = modelBuilder.Entity<Grade>();
             gradeEntity.Property(g => g.Id).ValueGeneratedOnAdd();
@@ -64,7 +65,7 @@ namespace EdVision.DataLayer
             var personEntity = modelBuilder.Entity<Person>();
             personEntity.Property(p => p.Id).ValueGeneratedOnAdd();
             personEntity.HasKey(p => p.Id);
-            personEntity.HasOne(p => p.Address).WithOne().HasForeignKey<Person>("AddressId");
+            personEntity.HasMany(p => p.Contacts).WithOne().HasForeignKey("PersonId");
 
             var studentEntity = modelBuilder.Entity<Student>();
             studentEntity.HasBaseType<Person>();
@@ -88,7 +89,7 @@ namespace EdVision.DataLayer
             var projectEntity = modelBuilder.Entity<Project>();
             projectEntity.Property(p => p.Id).ValueGeneratedOnAdd();
             projectEntity.HasKey(p => p.Id);
-            projectEntity.HasMany(p => p.Tasks).WithOne().HasForeignKey("ProjectId");
+            projectEntity.HasMany(p => p.Tasks).WithOne().HasForeignKey(t => t.ProjectId);
 
             var taskEntity = modelBuilder.Entity<StudentTask>();
             taskEntity.Property(t => t.Id).ValueGeneratedOnAdd();
@@ -99,8 +100,9 @@ namespace EdVision.DataLayer
             var universityEntity = modelBuilder.Entity<University>();
             universityEntity.Property(u => u.Id).ValueGeneratedOnAdd();
             universityEntity.HasKey(u => u.Id);
-            universityEntity.HasOne(u => u.Address).WithOne().HasForeignKey<University>("AddressId");
-            universityEntity.HasMany(u => u.Departments).WithOne().HasForeignKey("UniversityId");
+            universityEntity.HasOne(u => u.City).WithMany().HasForeignKey("CityId");
+            universityEntity.HasMany(u => u.Contacts).WithOne().HasForeignKey("UniversityId");
+            universityEntity.HasMany(u => u.Departments).WithOne().HasForeignKey(d => d.UniversityId);
         }
     }
 }

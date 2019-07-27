@@ -12,8 +12,13 @@ namespace EdVision.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PatronimicName { get; set; }
-        public virtual Address Address { get; set; }
         public DateTime? Birthday { get; set; }
+
+        public virtual ICollection<Contact> Contacts { get; set; }
+
+        public Person() {
+            Contacts = new HashSet<Contact>();
+        }
     }
 
     public partial class Mentor : Person {

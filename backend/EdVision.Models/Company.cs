@@ -12,7 +12,6 @@ namespace EdVision.Models
         public string Name { get; set; }
         public string LegalName { get; set; }
         public string Description { get; set; }
-        public virtual Address Address { get; set; }
         public double Rating { get; set; }
 
         // TODO: Rename
@@ -20,6 +19,7 @@ namespace EdVision.Models
         public string ORGN { get; set; }
 
         public virtual ICollection<Mentor> Mentors { get; set; }
+        public virtual ICollection<Contact> Contacts { get; set; }
 
         public Company() {
             Mentors = new HashSet<Mentor>();

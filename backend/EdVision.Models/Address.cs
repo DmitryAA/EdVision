@@ -4,17 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace EdVision.Models
-{
-    public partial class Address
-    {
-        public int Id { get; set; }
+namespace EdVision.Models {
+    // public partial class Address
+    // {
+    //     public int Id { get; set; }
 
-        public string AddressString { get; set; }
-        public virtual City City { get; set; }
-        public string Coordinates { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public string Link { get; set; }
-    }
+    //     public string AddressString { get; set; }
+    //     public virtual City City { get; set; }
+    //     public string Coordinates { get; set; }
+    //     public string Phone { get; set; }
+    //     public string Email { get; set; }
+    //     public string Link { get; set; }
+    // }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EdVision.Models
 {
-    public class JobStatitics
+    public class JobStatistics
     {
         public int Id { get; set; } 
         public int Year { get; set; }
